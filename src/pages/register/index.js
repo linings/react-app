@@ -14,7 +14,7 @@ const Register = () => {
               <form className={styles.box}>
                 <h1>Register</h1>
                 <p className={styles["text-muted"]}>
-                  Please enter your username and password!
+                  Please enter your username , password and re-password!
                 </p>
                 <input type="text" name="" placeholder="Username"></input>
                 <input type="password" name="" placeholder="Password"></input>

@@ -6,8 +6,6 @@ import logo2 from "../../public/squirrel-logo.jpg";
 import logo3 from "../../public/flamingo-logo.jpg";
 import LinkComponent from "../link";
 import getNavigation from "../../utils/navigation";
-// import cart from '../../public/cart-grey.png';
-// import { useSelector } from 'react-redux';
 
 const Header = () => {
   const links = getNavigation();
