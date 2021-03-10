@@ -1,0 +1,36 @@
+@media screen and (max-width: 950px) {
+  header > img {
+    position: static;
+    display: none;
+    }
+}
+.link {
+  color: grey;
+  text-decoration: none;
+  list-style-type: none;
+}
+
+.list-item {
+  /* width: 100px; */
+  display: block;
+  font-family: Roboto;
+  font-style: normal;
+  font-size: 18px;
+  float: right;
+  text-align: center;
+  margin: 25px 10px 10px 10px;
+}
+
+.list-item:first-of-type {
+  margin-right: 38%;
+}
+
+.icon {
+  width: 70px;
+  height: 70px;
+  cursor: pointer;
+  display: block;
+}
+.list-item:hover {
+  opacity: 0.5;
+}
