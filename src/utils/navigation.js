@@ -1,11 +1,11 @@
+import React, { useContext } from "react";
+
 import iconDog from "../public/icon-dog.png";
 import iconHorse from "../public/icon-horse.png";
 import iconGiraffe from "../public/icon-giraffe.png";
 import iconElephant from "../public/icon-elephant.png";
 
-const getNavigation = () => {
-  let isAuth = false;
-
+const getNavigation = (isAuth) => {
   const notAuthLinks = [
     {
       image: iconHorse,
@@ -31,20 +31,25 @@ const getNavigation = () => {
 
   const authLinks = [
     {
-      title: "Our Mission",
-      href: "/about",
+      image: iconElephant,
+      title: "Log out",
+      href: "/logout",
     },
+
     {
+      image: iconDog,
       title: "Get involved",
       href: "/getInvolved",
     },
     {
+      image: iconGiraffe,
       title: "Our program",
       href: "/ourProgram",
     },
     {
-      title: "Shop",
-      href: "/shop",
+      image: iconHorse,
+      title: "Our Mission",
+      href: "/about",
     },
   ];
   return isAuth ? authLinks : notAuthLinks;

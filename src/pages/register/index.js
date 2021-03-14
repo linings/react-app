@@ -18,14 +18,15 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    authenticate(RESTAPI.name + "users/register", {
+    authenticate(RESTAPI.name + "data/Users", {
       username,
       password,
       repeatPassword,
     });
+    context.user = username;
+
+    history.push("/login");
   };
-  context.user = username;
-  history.push("/");
 
   return (
     <div>
@@ -58,7 +59,7 @@ const Register = () => {
                   }}
                 ></input>
                 <input
-                  type="repeat-password"
+                  type="password"
                   name="repeat-password"
                   placeholder="Re-Password"
                   value={repeatPassword}

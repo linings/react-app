@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import styles from "./index.module.css";
 import logo1 from "../../public/cat-logo.jpg";
@@ -6,9 +6,12 @@ import logo2 from "../../public/squirrel-logo.jpg";
 import logo3 from "../../public/flamingo-logo.jpg";
 import LinkComponent from "../link";
 import getNavigation from "../../utils/navigation";
+import UserContext from "../../context";
+
 
 const Header = () => {
-  const links = getNavigation();
+  const contex = useContext(UserContext);
+  const links = getNavigation(contex.user);
 
   return (
     <header className={styles.navigation}>
