@@ -23,9 +23,10 @@ const Register = () => {
       password,
       repeatPassword,
     });
-    context.user = username;
-
-    history.push("/login");
+    if (document.cookie) {
+      context.user = username;
+      history.push("/");
+    }
   };
 
   return (
