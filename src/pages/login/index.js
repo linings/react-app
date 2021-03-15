@@ -21,8 +21,10 @@ const Login = () => {
       username,
       password,
     });
-    context.user = username;
-    history.push("/");
+    if (document.cookie) {
+      context.user = username;
+      history.push("/");
+    }
   };
   return (
     <div>

@@ -20,19 +20,25 @@ const authenticate = async (url, body) => {
         console.log("Diff passes!");
       }
     } else {
-      let promise = await fetch(url, {
-        method: "POST",
-        body: JSON.stringify({
-          login: username,
-          password,
-        }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      let response = await promise.json();
-      console.log(response);
-      document.cookie = `x-auth-token=${response.ownerId}`;
+      try {
+        let promise = await fetch(url, {
+          method: "POST",
+          body: JSON.stringify({
+            login: username,
+            password,
+          }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        let response = await promise.json();
+        if (response.errorData) {
+          throw response.message;
+        }
+        document.cookie = `x-auth-token=${response.ownerId}`;
+      } catch (err) {
+        console.log(err);
+      }
     }
   } catch (error) {
     console.log(error.message);

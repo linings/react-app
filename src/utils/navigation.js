@@ -52,7 +52,12 @@ const getNavigation = (isAuth) => {
       href: "/about",
     },
   ];
-  return isAuth ? authLinks : notAuthLinks;
+  
+  if (document.cookie) {
+    return authLinks;
+  } else {
+    return notAuthLinks;
+  }
 };
 
 export default getNavigation;

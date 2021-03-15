@@ -11,6 +11,7 @@ import UserContext from "../../context";
 
 const Header = () => {
   const contex = useContext(UserContext);
+  console.log(contex.user);
   const links = getNavigation(contex.user);
 
   return (
