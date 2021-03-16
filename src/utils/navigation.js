@@ -48,8 +48,8 @@ const getNavigation = (isAuth) => {
     },
     {
       image: iconHorse,
-      title: "Our Mission",
-      href: "/about",
+      title: "Home",
+      href: "/",
     },
   ];
   

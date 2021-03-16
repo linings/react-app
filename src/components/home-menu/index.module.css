@@ -1,0 +1,42 @@
+body{
+    background-color: rgb(253, 251, 247);
+}
+.wrapper {
+    margin-top: 140px;
+    display: grid;
+    grid-template-columns: 260px 260px 260px;
+    grid-template-rows: 260px 260px;
+    grid-gap: 40px;
+    color: #444;
+    justify-content: center;
+    align-content: center;
+    grid-auto-flow:row;
+}
+.petMenu:hover {
+    opacity: 0.7;
+}
+.petImage:hover{
+    width: 250px;
+    height: 250px;
+}
+.petImage {
+    color: #fff;
+    width: 240px;
+    height: 240px;
+    padding-left: 20px;
+    font-size: 150%;
+    background-size: cover;
+    cursor: pointer;
+}
+.petMenu{
+  text-decoration: none;
+}
+.petText{
+    text-align: center;
+    font-family: Roboto;
+    font-style: normal;
+    font-size: 18px;
+    color: grey;
+    width: 240px;
+    margin-left: 20px;
+}

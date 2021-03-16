@@ -1,0 +1,16 @@
+div .info{    
+    width: 700px;
+    text-align: center;
+    position: relative;
+    top: 250px;
+    left: 50%;
+    border-top: 2px dotted black;
+    transform: translate(-50%, -50%);
+    margin-bottom: 160px;
+    padding-top: 60px;
+    font-family: "Lucida Console", "Courier New", monospace;
+    font-style: italic;
+    font-size: 18px;
+    color: grey;
+    line-height: 40px;
+}

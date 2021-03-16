@@ -1,14 +1,18 @@
 import React from "react";
-import styles from "./index.module.css";
-import getHomePageImages from '../../utils/getHomePageImages'
+import Difference from "../../components/difference";
+import LinkMenu from '../../components/home-menu';
+import Information from "../../components/information";
 
 const HomePage = () => {
-  let images = getHomePageImages();
-  console.log(images);
-  return (
-    <div className={styles["wrapper"]}>
-      <div className={`${styles["box"]}`}></div>
-    </div>
-  );
+
+
+    return (
+        <div>
+            <LinkMenu />
+            <Information />
+            <Difference />
+        </div>
+    );
 };
+
 export default HomePage;

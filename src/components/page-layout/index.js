@@ -7,7 +7,7 @@ const PageLayout = () => {
   return (
     <div>
       <Header />
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };
