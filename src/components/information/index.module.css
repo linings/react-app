@@ -2,7 +2,7 @@ div .info{
     width: 700px;
     text-align: center;
     position: relative;
-    top: 250px;
+    top: 240px;
     left: 50%;
     border-top: 2px dotted black;
     transform: translate(-50%, -50%);

@@ -2,10 +2,10 @@ body{
     background-color: rgb(253, 251, 247);
 }
 .wrapper {
-    margin-top: 140px;
+    margin-top: 180px;
     display: grid;
     grid-template-columns: 260px 260px 260px;
-    grid-template-rows: 260px 260px;
+    grid-template-rows: 260px;
     grid-gap: 40px;
     color: #444;
     justify-content: center;

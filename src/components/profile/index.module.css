@@ -1,0 +1,17 @@
+.user-profile{
+    position: relative;
+    float: right;
+    margin: 5% 5% 0 30%;
+    color: black;
+    font-family: Roboto;
+    font-weight: 500;
+    font-size: 20px;
+    cursor: pointer;
+}
+.user-icon{
+    margin-right: -35px;
+    margin-top: -20px;
+    float: right;
+    width: 20px;
+    height: 20px;
+}

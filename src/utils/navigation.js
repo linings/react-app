@@ -22,29 +22,18 @@ const getNavigation = (isAuth) => {
       title: "Home",
       href: "/",
     },
-    {
-      image: iconElephant,
-      title: "Our Mission",
-      href: "/about",
-    },
   ];
 
   const authLinks = [
     {
-      image: iconElephant,
-      title: "Log out",
-      href: "/logout",
-    },
-
-    {
       image: iconDog,
-      title: "Get involved",
-      href: "/getInvolved",
+      title: "Adopt",
+      href: "/adopt",
     },
     {
       image: iconGiraffe,
-      title: "Our program",
-      href: "/ourProgram",
+      title: "Donate",
+      href: "/donate",
     },
     {
       image: iconHorse,

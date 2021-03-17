@@ -7,18 +7,19 @@ import logo3 from "../../public/flamingo-logo.jpg";
 import LinkComponent from "../link";
 import getNavigation from "../../utils/navigation";
 import UserContext from "../../context";
+import Profile from "../profile";
 
 
 const Header = () => {
   const contex = useContext(UserContext);
-  console.log(contex.user);
   const links = getNavigation(contex.user);
 
   return (
     <header className={styles.navigation}>
-      <img className={styles.logo1} src={logo1} alt="shelter"></img>
+      {/* <img className={styles.logo1} src={logo1} alt="shelter"></img>
       <img className={styles.logo2} src={logo2} alt="shelter"></img>
-      <img className={styles.logo3} src={logo3} alt="shelter"></img>
+      <img className={styles.logo3} src={logo3} alt="shelter"></img> */}
+      <Profile/>
       {links.map((navElement) => {
         return (
           <LinkComponent
