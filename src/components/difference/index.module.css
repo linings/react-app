@@ -1,11 +1,84 @@
-diff-wrapper{
-    margin-top: 140px;
+.diff-wrapper{
+    width: 200px;
     display: grid;
-    grid-template-columns: 260px 260px 260px;
-    grid-template-rows: 260px 260px;
-    grid-gap: 40px;
-    color: #444;
-    justify-content: center;
+    grid-template-columns: 200px 200px 200px 200px;
+    grid-template-rows: 140px 140px 140px;
+    height: 500px;
+    margin-top: 1100px;
+    margin-left: 22%;
+    margin-bottom: 200px;
+    align-items: center;
+    grid-template-areas: 
+    "header header header header"
+    ". main main .";
+    justify-items: center; 
     align-content: center;
-    grid-auto-flow: row;
+    grid-auto-flow:row; 
+}
+
+.diff-wrapper > h1 {
+    grid-column-start: 1;
+    grid-column-end: 5;
+    font-family: Roboto;
+    font-style: normal;
+    font-size: 40px;
+    float: right;
+    text-align: center;
+    margin: 10px;
+}
+img.paw{
+    width: 20px;
+    height: 20px;
+    margin: 2px 5px 0 0;
+}
+div.amount{
+    color: white;  
+    height: 100px;
+    width: 100px;
+    background-color: teal;
+    border-radius: 100%;
+    box-shadow: 3px 3px 3px rgb(17, 63, 63);
+    text-align: center;
+    font-family: Roboto;
+    cursor: pointer;
+    font-size: 25px;
+    margin: 30px 20px 0 20px;
+    line-height: 100px;
+}
+div.amount:hover{
+    background-color: black;
+}
+div.text {
+    text-align: center;
+    margin-top: 30px;
+    font-weight: 500;
+}
+.donate{
+    grid-column:  2/3;
+    margin-bottom: -50px;
+    text-align: center;
+    cursor: pointer;
+}
+.donate2{
+    margin-bottom: -50px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.donate, .donate2 {
+  background-color: rgb(27, 135, 143);
+  border-radius: 5px;
+  box-shadow: 3px 3px 3px rgb(17 63 63);
+  color: white;
+  transition: width 2s, height 4s;
+  padding: 5px 10px 5px 10px;
+  text-decoration: none;
+}
+.donate > .text ,.donate2 > .text {
+    top: -3px;
+    position: relative;
+  }
+  .donate:hover, .donate2:hover{
+  width: 160px;
+  height: 30px;
 }
