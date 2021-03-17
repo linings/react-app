@@ -22,8 +22,6 @@ const GetRandomStory = () => {
         getStory();
     }, []);
 
-    console.log(story);
-
     return (
         <div>
             <img className={styles['random-story']} src={story.url}></img>
