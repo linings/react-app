@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import RESTAPI from '../../REST API';
 import styles from './index.module.css';
-import quotes from '../../public/left-quote.png'
 
 const GetRandomStory = () => {
     let [story, setStory] = useState([]);
@@ -30,7 +29,6 @@ const GetRandomStory = () => {
             <img className={styles['random-story']} src={story.url}></img>
             <span className={styles['random-story-text']}>
                 <div>{story.story}</div>
-                <img className={styles.quotes} src={quotes}></img>
                 <div className={styles['name-of-pet']}>-{story.name}</div>
             </span>
         </div>
