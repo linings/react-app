@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import styles from "./index.module.css";
-import RESTAPI from '../../REST API'
+import RESTAPI from '../../../REST API'
 import { Link } from "react-router-dom";
 
 const LinkMenu = () => {

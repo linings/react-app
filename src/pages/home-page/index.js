@@ -1,9 +1,9 @@
 import React from "react";
 
-import Difference from "../../components/difference";
+import Difference from "../../components/homeComponents/difference";
 import GetRandomStory from "../../components/getRandomStory";
-import LinkMenu from '../../components/home-menu';
-import Information from "../../components/information";
+import LinkMenu from '../../components/homeComponents/home-menu';
+import Information from "../../components/homeComponents/information";
 import getCookie from '../../utils/cookie'
 import styles from './index.module.css'
 import dog from '../../public/doggy.png'

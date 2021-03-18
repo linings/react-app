@@ -1,5 +1,5 @@
 import styles from './index.module.css'
-import paw from '../../public/paw.svg'
+import paw from '../../../public/paw.svg'
 import { Link } from 'react-router-dom';
 
 const Difference = () => {

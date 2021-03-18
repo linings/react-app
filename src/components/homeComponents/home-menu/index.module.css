@@ -15,10 +15,6 @@ body{
 .petMenu:hover {
     opacity: 0.7;
 }
-.petImage:hover{
-    width: 250px;
-    height: 250px;
-}
 .petImage {
     color: #fff;
     width: 240px;
@@ -33,9 +29,8 @@ body{
 }
 .petText{
     text-align: center;
-    font-family: Roboto;
     font-style: normal;
-    font-size: 18px;
+    font-size: 22px;
     color: grey;
     width: 240px;
     margin-left: 20px;

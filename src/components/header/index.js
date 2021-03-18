@@ -1,9 +1,6 @@
 import React, { useContext } from "react";
 
 import styles from "./index.module.css";
-import logo1 from "../../public/cat-logo.jpg";
-import logo2 from "../../public/squirrel-logo.jpg";
-import logo3 from "../../public/flamingo-logo.jpg";
 import LinkComponent from "../link";
 import getNavigation from "../../utils/navigation";
 import UserContext from "../../context";
@@ -16,13 +13,11 @@ const Header = () => {
 
   return (
     <header className={styles.navigation}>
-      {/* <img className={styles.logo1} src={logo1} alt="shelter"></img>
-      <img className={styles.logo2} src={logo2} alt="shelter"></img>
-      <img className={styles.logo3} src={logo3} alt="shelter"></img> */}
-      <Profile/>
+      <Profile />
       {links.map((navElement) => {
         return (
           <LinkComponent
+            style={'header-link'}
             image={navElement.image}
             key={navElement.title}
             title={navElement.title}

@@ -4,13 +4,17 @@
     display: none;
     }
 }
-.link {
+.header-link, .donate-link{
   color: grey;
   text-decoration: none;
   list-style-type: none;
 }
 
-.list-item {
+
+
+/* -------------------------------------------------------------------------------------- Header Link  */
+
+.list-item-header-link {
   /* width: 100px; */
   display: block;
   font-family: Roboto;
@@ -21,7 +25,7 @@
   margin: 10px;
 }
 
-.list-item:first-of-type {
+.list-item-header-link:first-of-type {
   margin-right: 38%;
 }
 
@@ -31,6 +35,24 @@
   cursor: pointer;
   display: block;
 }
-.list-item:hover {
+.list-item-header-link:hover {
   opacity: 0.5;
+}
+
+
+/* ---------------------------------------------------------------------------------------- Donate Link */
+
+.donate-link{
+  position: relative;
+  top: 160px;
+  left: 6%;
+  font-size: 22px;
+  line-height: 60px;
+  display: inline;
+}
+
+.donate-link:hover{
+  color: rgb(69, 184, 145);
+  font-size: 25px;
+  font-weight: 400;
 }
