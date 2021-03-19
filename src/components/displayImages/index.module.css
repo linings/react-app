@@ -6,7 +6,9 @@
     color: #444;
     justify-content: center;
     align-content: center;
-    grid-auto-flow:row;
+    grid-auto-flow: row;
+    margin: 0 0 100px 28%;
+    border-left: 3px dotted rgb(0, 128, 107);
 }
 
 .petImage {
