@@ -1,10 +1,13 @@
 .wrapper {
     display: grid;
-    grid-template-columns: 260px 260px 260px;
+    grid-template-columns: 260px 260px;
     grid-template-rows: auto;
-    grid-gap: 40px;
+    grid-row-gap: 4%;
+    grid-column-gap: 14%;
     color: #444;
+    padding-left: 20px;
     justify-content: center;
+    padding-top: 50px;
     align-content: center;
     grid-auto-flow: row;
     margin: 0 0 100px 28%;
@@ -13,10 +16,34 @@
 
 .petImage {
     color: #fff;
-    width: 240px;
+    width: 260px;
     height: 240px;
-    padding-left: 20px;
     font-size: 150%;
     background-size: cover;
     cursor: pointer;
+}
+
+.petMenu {
+    text-decoration: none;
+}
+.petMenu:hover{
+    opacity: 0.9;
+    background-color: rgb(243, 250, 248);
+    border-radius: 5px;
+}
+
+.subject-details > .name{
+    color: rgb(27,135,143);
+    font-weight: 500;
+    font-size: 22px;
+    margin-left: 5px;
+}
+.subject-details > .name:hover{
+    color: rgb(87, 169, 173);
+}
+
+.subject-details > .age , .sex{
+    display: inline;
+    color: rgb(87, 169, 173);
+    margin-left: 5px;
 }

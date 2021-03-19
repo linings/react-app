@@ -1,10 +1,10 @@
 import React from 'react';
 import { useLocation } from 'react-router';
+import Adoption from '../../adoptionComponents/adoption';
 import Grid from '../../displayImages';
 import LinkComponent from "../../link";
 import Choose from '../chooseApet/choose';
 import styles from './index.module.css';
-import Adoption from '../adoptionProcess';
 
 const Main = () => {
     const location = useLocation();
@@ -25,7 +25,6 @@ const Main = () => {
     ];
 
 
-
     return (
         <div>
             <div className={styles['link-wrapper']}>
@@ -38,10 +37,9 @@ const Main = () => {
                         type="aside" />
                 })}
             </div>
-            {/* <div className={styles['vertical-line']}></div> */}
             {location.pathname === '/donate/dogs' ? <Grid path={'data/dogs'} />
                 : location.pathname === '/donate/cats' ? <Grid path={'data/cats'} />
-                    : location.pathname === '/donate/adoption-info' ? <Adoption />
+                : location.pathname === '/donate/adoption-info' ? <Adoption />
                     : <Choose />}
 
         </div>

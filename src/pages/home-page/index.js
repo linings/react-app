@@ -16,7 +16,7 @@ const HomePage = () => {
         <div>
             <LinkMenu />
             <Information />'
-            <img className={styles['dog-image']} src={dog} />
+            {/* <img className={styles['dog-image']} src={dog} /> */}
             {token ? <GetRandomStory /> : null}
             {token ? <Difference /> : null}
         </div>
