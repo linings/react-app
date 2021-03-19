@@ -1,5 +1,6 @@
 import React from 'react';
 import { useLocation } from 'react-router';
+import Grid from '../../displayImages';
 import LinkComponent from "../../link";
 import Cats from '../chooseApet/cats';
 import Choose from '../chooseApet/choose';
@@ -39,8 +40,8 @@ const Main = () => {
                 })}
             </div>
             {/* <div className={styles['vertical-line']}></div> */}
-            {location.pathname === '/donate/dogs' ? <Dogs />
-                : location.pathname === '/donate/cats' ? <Cats />
+            {location.pathname === '/donate/dogs' ? <Grid path={'data/dogs'} />
+                : location.pathname === '/donate/cats' ? <Grid path={'data/cats'} />
                     // : location.pathname === '/donate/adoption-info' ? <Adoption />
                     : <Choose />}
 

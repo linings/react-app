@@ -1,10 +1,9 @@
-import styles from './index.module.css'
+import Grid from '../../../displayImages';
 
 const Cats = () => {
+    
     return (
-        <div className={styles.cats}>
-            CAAAAAAAAATS!
-        </div>
+        <Grid path={'data/cats'}/>
     )
 }
 export default Cats;
