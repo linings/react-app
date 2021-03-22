@@ -30,6 +30,7 @@
     opacity: 0.9;
     background-color: rgb(243, 250, 248);
     border-radius: 5px;
+    text-decoration: none;
 }
 
 .subject-details > .name{

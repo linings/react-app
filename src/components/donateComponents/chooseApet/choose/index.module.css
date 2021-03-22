@@ -23,8 +23,8 @@
     font-size: 22px;
     color: grey;
     position: absolute;
-    padding-top: 260px;
-    margin-left: -230px;
+    margin-left: 20px;
+    text-decoration: none;
 }
 .dog-image > a:hover, .cat-image > a:hover{
     color: rgb(69, 184, 145);
