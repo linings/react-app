@@ -4,6 +4,7 @@ import "./index.css";
 import App from "./App";
 import Navigation from "./navigation";
 import reportWebVitals from "./reportWebVitals";
+import Auth from "./Auth";
 
 ReactDOM.render(
   <React.StrictMode>

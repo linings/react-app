@@ -8,11 +8,9 @@ import weddingCake from '../../../public/wedding-cake.png';
 import sex from '../../../public/sex.png';
 
 const DisplayOne = ({ props }) => {
-    console.log(props);
     const { show, handleClose, subjects } = props;
 
     const currentSubject = subjects.find(s => s.objectId === show.id);
-    console.log(currentSubject);
     return (
         <>
             <Modal

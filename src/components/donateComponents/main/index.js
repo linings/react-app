@@ -12,15 +12,15 @@ const Main = () => {
     let mainInfo = [
         {
             title: 'Cats',
-            href: '/donate/cats'
+            href: '/adopt/cats'
         },
         {
             title: 'Dogs',
-            href: '/donate/dogs'
+            href: '/adopt/dogs'
         },
         {
             title: 'Adoption Procces',
-            href: '/donate/adoption-info'
+            href: '/adopt/adoption-info'
         },
     ];
 
@@ -37,9 +37,9 @@ const Main = () => {
                         type="aside" />
                 })}
             </div>
-            {location.pathname === '/donate/dogs' ? <Grid path={'data/dogs'} />
-                : location.pathname === '/donate/cats' ? <Grid path={'data/cats'} />
-                : location.pathname === '/donate/adoption-info' ? <Adoption />
+            {location.pathname === '/adopt/dogs' ? <Grid path={'data/dogs'} />
+                : location.pathname === '/adopt/cats' ? <Grid path={'data/cats'} />
+                : location.pathname === '/adopt/adoption-info' ? <Adoption />
                     : <Choose />}
 
         </div>

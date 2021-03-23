@@ -38,6 +38,11 @@
 .list-item-header-link:hover {
   opacity: 0.5;
 }
+.list-item-header-link > a:hover {
+  opacity: 0.5;
+  text-decoration: none;
+}
+
 
 
 /* ---------------------------------------------------------------------------------------- Donate Link */

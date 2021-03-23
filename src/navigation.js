@@ -5,6 +5,7 @@ import Home from "./components/homeComponents/home";
 import Login from "./pages/login";
 import Register from "./pages/register";
 import Donate from "./components/donateComponents/donate";
+import Admin from "./components/admin";
 
 const Navigation = () => {
   return (
@@ -13,7 +14,8 @@ const Navigation = () => {
         <Route path="/" exact component={Home} />
         <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />
-        <Route path="/donate" component={Donate} />
+        <Route path="/adopt" component={Donate} />
+        <Route path="/upload" component={Admin} />
       </Switch>
     </BrowserRouter>
   );

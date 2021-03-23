@@ -1,7 +1,7 @@
 .user-profile{
     position: relative;
     float: right;
-    margin: 5% 5% 0 30%;
+    margin: 70px 5% 0 30%;
     color: black;
     font-family: Roboto;
     font-weight: 500;
@@ -18,4 +18,13 @@
     border: none;
     background: none;
     cursor: pointer;
+}
+.username{
+   padding-right: 40px;
+}
+.user-icon:hover {
+    color: rgb(168, 164, 164);
+}
+.user-profile:hover{
+    color: rgb(168, 164, 164);
 }

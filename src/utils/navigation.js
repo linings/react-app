@@ -27,13 +27,13 @@ const getNavigation = (isAuth) => {
   const authLinks = [
     {
       image: iconDog,
-      title: "Adopt",
-      href: "/adopt",
+      title: "Upload",
+      href: "/upload",
     },
     {
       image: iconGiraffe,
-      title: "Donate",
-      href: "/donate",
+      title: "Adopt",
+      href: "/adopt",
     },
     {
       image: iconHorse,
