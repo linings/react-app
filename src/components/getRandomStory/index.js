@@ -9,7 +9,7 @@ const GetRandomStory = () => {
         let randomStory = await fetch(RESTAPI.name + 'data/stories');
         let stories = await randomStory.json();
 
-        let story = stories[getRandomInt(3)];
+        let story = stories[getRandomInt(stories.length)];
 
         setStory(story);
     };

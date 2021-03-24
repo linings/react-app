@@ -19,12 +19,13 @@ const Profile = () => {
             context.user = "";
             history.push('/');
     }
+    console.log(cookie);
 
     return (
         <div>
             <div className={styles['user-profile']}>
                 <span className={styles['username']}>{localStorage.getItem('username')}</span>
-                {cookie !== null ? <button className={styles['user-icon']} onClick={logout}>Logout</button> : null}
+                {cookie ? <button className={styles['user-icon']} onClick={logout}>Logout</button> : null}
             </div>
         </div>
     )
