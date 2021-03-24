@@ -3,13 +3,12 @@ import React, { useContext } from "react";
 import styles from "./index.module.css";
 import LinkComponent from "../link";
 import getNavigation from "../../utils/navigation";
-import UserContext from "../../context";
 import Profile from "../profile";
 
 
 const Header = () => {
-  const contex = useContext(UserContext);
-  const links = getNavigation(contex.user);
+  const isAdmin = localStorage.getItem('isAdmin');
+  const links = getNavigation(isAdmin);
 
   return (
     <header className={styles.navigation}>

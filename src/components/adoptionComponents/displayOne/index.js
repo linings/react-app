@@ -23,6 +23,9 @@ const DisplayOne = ({ props }) => {
             >
                 <Modal.Body className={styles['card']}>
                     <Card className={styles['pet-wrapper']} >
+                        <Card.Header>
+                            <Card.Title className={styles['pet-name']}>{currentSubject.name}</Card.Title>
+                        </Card.Header>
                         <Card.Img  src={currentSubject.url} />
                         <Card.Body>
                             <ListGroup horizontal className={styles.horizontal}>

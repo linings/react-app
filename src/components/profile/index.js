@@ -15,6 +15,7 @@ const Profile = () => {
             'x-auth-token= ; expires  = Thu, 01 Jan 1970 00:00:00 GMT';
             localStorage.removeItem('username');
             localStorage.removeItem('password');
+            localStorage.removeItem('isAdmin');
             context.user = "";
             history.push('/');
     }

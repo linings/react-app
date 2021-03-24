@@ -11,6 +11,9 @@
     width: 160px; 
     text-align: center;
 }
+.pet-name{
+    color:rgb(27,135,143);
+}
 .icon-image{
     width: 60px;
     height: 60px;

@@ -5,7 +5,9 @@ import iconHorse from "../public/icon-horse.png";
 import iconGiraffe from "../public/icon-giraffe.png";
 import iconElephant from "../public/icon-elephant.png";
 
-const getNavigation = (isAuth) => {
+
+const getNavigation = (isAdmin) => {
+
   const notAuthLinks = [
     {
       image: iconHorse,
@@ -27,6 +29,24 @@ const getNavigation = (isAuth) => {
   const authLinks = [
     {
       image: iconDog,
+      title: "Donate",
+      href: "/donate",
+    },
+    {
+      image: iconGiraffe,
+      title: "Adopt",
+      href: "/adopt",
+    },
+    {
+      image: iconHorse,
+      title: "Home",
+      href: "/",
+    },
+  ];
+
+  const adminLinks = [
+    {
+      image: iconDog,
       title: "Upload",
       href: "/upload",
     },
@@ -41,8 +61,11 @@ const getNavigation = (isAuth) => {
       href: "/",
     },
   ];
-  
-  if (document.cookie) {
+
+
+  if (document.cookie && isAdmin === 'true') {
+    return adminLinks;
+  } else if (document.cookie && isAdmin === 'false') {
     return authLinks;
   } else {
     return notAuthLinks;

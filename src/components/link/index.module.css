@@ -35,15 +35,24 @@
   cursor: pointer;
   display: block;
 }
-.list-item-header-link:hover {
-  opacity: 0.5;
-}
 .list-item-header-link > a:hover {
-  opacity: 0.5;
+  color: black;
   text-decoration: none;
 }
+.drop-down-text > button{
+  background-color: white;
+  color: grey;
 
-
+  font-family: Roboto;
+  font-style: normal;
+  font-size: 15px;
+  border: none;
+}
+.drop-down-text > button:hover{
+  background-color: white;
+  color: black;
+  border: none;
+}
 
 /* ---------------------------------------------------------------------------------------- Donate Link */
 

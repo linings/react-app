@@ -30,7 +30,7 @@ const authenticate = async (url, body) => {
           },
         });
         let response = await promise.json();
-        document.cookie = `x-auth-token=${response.ownerId}`;
+        attachUserDetails(response, username, password);
       } else {
         console.log("Diff passes!");
       }
@@ -47,20 +47,27 @@ const authenticate = async (url, body) => {
           },
         });
         let response = await promise.json();
+
         if (response.errorData) {
           throw response.message;
         }
-        document.cookie = `x-auth-token=${response.ownerId}`;
-        localStorage.setItem('username', username);
-        localStorage.setItem('password', password);
+        attachUserDetails(response, username, password);
       } catch (err) {
         console.log(err);
       }
+     
     }
   } catch (error) {
     console.log(error.message);
     return;
   }
 };
+
+const attachUserDetails = (response, username, password) => {
+  document.cookie = `x-auth-token=${response.ownerId}`;
+  localStorage.setItem('username', username);
+  localStorage.setItem('password', password);
+  localStorage.setItem('isAdmin', response.isAdmin);
+}
 
 export default authenticate;
