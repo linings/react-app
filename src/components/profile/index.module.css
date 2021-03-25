@@ -1,7 +1,7 @@
 .user-profile{
     position: relative;
     float: right;
-    margin: 70px 5% 0 30%;
+    margin: 70px 5% 0 22%;
     color: black;
     font-family: Roboto;
     font-weight: 500;
@@ -9,7 +9,6 @@
     cursor: pointer;
 }
 .user-icon{
-    margin-right: -35px;
     margin-top: -10px;
     float: right;
     width: 70px;

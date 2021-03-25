@@ -3,7 +3,7 @@
     margin-left: 35px;
     height: 650px;
     padding-top: 100px;
-    background-color: hsl(190, 51%, 89%);
+    background-color: rgb(158, 211, 211);
     border-radius: 5px;
 }
 .payment-form form{
@@ -18,7 +18,7 @@
     font-size: 18px;
     border-radius: 5px;   
     font-style: italic;
-    background-color: rgb(225, 240, 243);
+    background-color: rgb(225,240,243);
 }
 .first-input{
     width: 100px;
@@ -26,6 +26,7 @@
 .thankyou{
     float: left;
     margin: 30px 0 0 60px;
+    color: grey;
     width: 30%;
     font-style: italic;
 }

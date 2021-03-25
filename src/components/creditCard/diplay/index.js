@@ -18,7 +18,7 @@ const Display = ({ props }) => {
                 <PaymentForm />
             </Modal.Body>
             <Modal.Footer>
-            <Button href={'/'} variant="outline-primary" >
+            <Button href={'/'} variant="outline-info" >
                     Donate
                 </Button>
                 <Button variant="outline-secondary" onClick={props.handleClose}>

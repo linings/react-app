@@ -9,16 +9,19 @@ import paws from '../../../public/paws.png';
 import weddingCake from '../../../public/wedding-cake.png';
 import sex from '../../../public/sex.png';
 import Display from '../../creditCard/diplay';
+import { useHistory, useLocation } from 'react-router';
+import deleteItem from '../../../utils/deleteData';
 
 const DisplayOne = ({ props }) => {
     const [showCard, setShowCard] = useState(false);
+    const location = useLocation();
+    const history = useHistory();
 
     const handleCloseCard = () => {
         handleClose();
         setShowCard(false);
     };
     const handleShowCard = () => setShowCard(true);
-
 
     const { show, handleClose, subjects } = props;
 
@@ -59,6 +62,7 @@ const DisplayOne = ({ props }) => {
                             <Button onClick={handleShowCard} variant="outline-info" className={styles['pop-up-btn']}>Donate to my care &gt;</Button>
                             {showCard && <Display props={{ show: showCard, handleClose: handleCloseCard }} />}
                             <Button href={'/adopt'} variant="outline-info">Adopt me &gt;</Button>
+                            {localStorage.getItem('isAdmin') === 'true' ? <Button onClick={() => deleteItem(show.id, location.pathname.split('/')[2])} className={styles['delete-button']} variant="danger"> Delete </Button> : null}
                         </Card.Body>
                     </Card>
                 </Modal.Body>

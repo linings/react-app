@@ -1,8 +1,19 @@
 import styles from './index.module.css'
 import paw from '../../../public/paw.svg'
 import { Link } from 'react-router-dom';
+import Display from '../../creditCard/diplay';
+import { useState } from 'react';
+
 
 const Difference = () => {
+   const [showCard, setShowCard] = useState(false);
+
+   const handleCloseCard = () => {
+      setShowCard(false);
+   };
+   const handleShowCard = () => setShowCard(true);
+
+
    return <div className={styles['diff-wrapper']}>
       <h1>Help Us take care of Animals </h1>
       <div>
@@ -20,14 +31,12 @@ const Difference = () => {
          <div className={styles.amount}>€ 350</div>
          <div className={styles.text}>Lifesaving surgery</div>
       </div>
-      <Link to={'/donate'} className={styles.donate}>
+      <div className={styles.donate2}>
          <img className={styles.paw} src={paw}></img>
-         <span className={styles.text}>Donate Now</span>
-      </Link>
-      <Link to={'/donate'} className={styles.donate2}>
-         <img className={styles.paw} src={paw}></img>
-         <span className={styles.text}>Donate Monthly</span>
-      </Link>
+         <button onClick={handleShowCard} className={styles.text}>Donate Now</button>
+         {showCard && <Display props={{ show: showCard, handleClose: handleCloseCard }} />}
+      </div>
+
    </div>
 }
 
