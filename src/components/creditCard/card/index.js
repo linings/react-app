@@ -1,6 +1,7 @@
 import React from 'react';
 import Cards from 'react-credit-cards';
 import 'react-credit-cards/es/styles-compiled.css';
+import styles from './index.module.css'
 
 export default class PaymentForm extends React.Component {
     state = {
@@ -23,7 +24,7 @@ export default class PaymentForm extends React.Component {
 
     render() {
         return (
-            <div id="PaymentForm">
+            <div id="PaymentForm" className={styles['payment-form']}>
                 <Cards
                     cvc={this.state.cvc}
                     expiry={this.state.expiry}
@@ -31,7 +32,34 @@ export default class PaymentForm extends React.Component {
                     name={this.state.name}
                     number={this.state.number}
                 />
+
+                <p className={styles.thankyou}>
+                    Your gift will change a pet's life!
+                    We work every day to find homes for dogs and cats in crisis.
+                    We're committed to providing the best possible care for their specific needs
+                    while they wait. You can create hope for them: your donation provides healthy
+                    food, comfortable bedding, vital enrichment, training and medical intervention.
+                    <br/>
+                   <b>Donate today!</b> 
+                </p>
+
                 <form>
+                    <div>
+                        <input
+                            className={styles['first-input']}
+                            type="tel"
+                            name="amount"
+                            placeholder="Amount"
+                        />
+                        EUR
+                    </div>
+                    <input
+                        type="tel"
+                        name="number"
+                        placeholder="Card number"
+                        onChange={this.handleInputChange}
+                        onFocus={this.handleInputFocus}
+                    />
                     <div>
                         <input
                             type="tel"

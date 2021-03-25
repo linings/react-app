@@ -19,7 +19,6 @@ const Profile = () => {
             context.user = "";
             history.push('/');
     }
-    console.log(cookie);
 
     return (
         <div>

@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
@@ -6,11 +8,22 @@ import styles from './index.module.css';
 import paws from '../../../public/paws.png';
 import weddingCake from '../../../public/wedding-cake.png';
 import sex from '../../../public/sex.png';
+import Display from '../../creditCard/diplay';
 
 const DisplayOne = ({ props }) => {
+    const [showCard, setShowCard] = useState(false);
+
+    const handleCloseCard = () => {
+        handleClose();
+        setShowCard(false);
+    };
+    const handleShowCard = () => setShowCard(true);
+
+
     const { show, handleClose, subjects } = props;
 
     const currentSubject = subjects.find(s => s.objectId === show.id);
+
     return (
         <>
             <Modal
@@ -26,7 +39,7 @@ const DisplayOne = ({ props }) => {
                         <Card.Header>
                             <Card.Title className={styles['pet-name']}>{currentSubject.name}</Card.Title>
                         </Card.Header>
-                        <Card.Img  src={currentSubject.url} />
+                        <Card.Img src={currentSubject.url} />
                         <Card.Body>
                             <ListGroup horizontal className={styles.horizontal}>
                                 <ListGroup.Item className={styles['icon']} >
@@ -43,12 +56,14 @@ const DisplayOne = ({ props }) => {
                                 </ListGroup.Item>
                             </ListGroup>
                             <Card.Text className={styles['paragraph']}>{currentSubject.story}</Card.Text>
-                            <Button href={'/donate'} variant="outline-info" className={styles['pop-up-btn']}>Donate to my care &gt;</Button>
-                            <Button  href={'/adopt'} variant="outline-info">Adopt me &gt;</Button>
+                            <Button onClick={handleShowCard} variant="outline-info" className={styles['pop-up-btn']}>Donate to my care &gt;</Button>
+                            {showCard && <Display props={{ show: showCard, handleClose: handleCloseCard }} />}
+                            <Button href={'/adopt'} variant="outline-info">Adopt me &gt;</Button>
                         </Card.Body>
                     </Card>
                 </Modal.Body>
             </Modal>
+
             );
         </>
     )
