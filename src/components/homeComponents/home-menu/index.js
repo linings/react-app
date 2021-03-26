@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from "react";
 
 import styles from "./index.module.css";
-import RESTAPI from '../../../REST API'
 import { Link } from "react-router-dom";
+import getData from "../../../utils/getData";
 
 const LinkMenu = () => {
     let [images, setImages] = useState([]);
 
     async function getImages() {
-        let images = await fetch(RESTAPI.name + `data/images`);
-        let result = await images.json();
-
+        let result = await getData('images');
         setImages(result);
     }
 

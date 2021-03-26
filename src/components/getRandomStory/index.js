@@ -1,14 +1,13 @@
 import { useEffect, useState } from 'react';
 import RESTAPI from '../../REST API';
+import getData from '../../utils/getData';
 import styles from './index.module.css';
 
 const GetRandomStory = () => {
     let [story, setStory] = useState([]);
 
     async function getStory() {
-        let randomStory = await fetch(RESTAPI.name + 'data/stories');
-        let stories = await randomStory.json();
-
+        let stories = await getData('stories');
         let story = stories[getRandomInt(stories.length)];
 
         setStory(story);

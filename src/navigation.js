@@ -5,7 +5,7 @@ import Home from "./components/homeComponents/home";
 import Login from "./pages/login";
 import Register from "./pages/register";
 import Donate from "./components/donateComponents/donate";
-import Admin from "./components/admin";
+import Admin from "./components/admin/adminPage";
 
 const Navigation = () => {
   return (

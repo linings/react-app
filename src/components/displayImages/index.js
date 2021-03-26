@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom';
 import RESTAPI from '../../REST API';
+import getData from '../../utils/getData';
 import DisplayOne from '../adoptionComponents/displayOne';
 import styles from './index.module.css';
 
@@ -14,8 +15,7 @@ const Grid = ({ path }) => {
     }
 
     const getCats = async () => {
-        let data = await fetch(RESTAPI.name + path);
-        let result = await data.json();
+        let result = await getData(path.split('/')[1])
 
         setSubjects(result);
     }
