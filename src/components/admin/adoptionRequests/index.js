@@ -23,13 +23,13 @@ const AdoptionRequestsList = () => {
     }, [])
 
     return (
-        <Table striped bordered hover size="sm" className={styles.table}>
-            <thead>
+        <Table  size="sm" className={styles.table}>
+            <thead className={styles['table-head']}>
                 <tr>
                     <th>#</th>
-                    <th>First and Last Name</th>
-                    <th>Does fosterer has another pet</th>
-                    <th>Does fosterer has permission for pet</th>
+                    <th>Name</th>
+                    <th>Has pet</th>
+                    <th>Has permit</th>
                     <th>Pet ID</th>
                     <th>Description</th>
                     <th>Email</th>
@@ -39,11 +39,11 @@ const AdoptionRequestsList = () => {
                 {requests.map((request, i) => {
                     return <tr key={request.objectId}>
                         <td>{i + 1}</td>
-                        <td>{request.name}</td>
-                        <td>{request.currently}</td>
-                        <td>{request.permission}</td>
-                        <td>{request.petId}</td>
-                        <td>{request.description}</td>
+                        <td className={styles['pet-name']}>{request.name}</td>
+                        <td className={styles['pet-current']}>{request.currently}</td>
+                        <td className={styles['pet-permit']}>{request.permission}</td>
+                        <td className={styles['pet-id']}>{request.petId}</td>
+                        <td className={styles.description}>{request.description}</td>
                         <td>{request.email}</td>
                     </tr>
                 })}

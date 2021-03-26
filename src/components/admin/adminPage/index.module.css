@@ -2,7 +2,7 @@
   width: 500px;
   position: relative;
   float: right;
-  margin-right: 10%;
+  margin-right: 2%;
   height: auto;
   background: #dcf6f4;
   text-align: center;
@@ -11,6 +11,7 @@
   border-radius: 10px;
   margin-top: 200px;
   z-index: 1;
+  border: 1px solid black;
 }
 
 .text-muted {

@@ -32,11 +32,17 @@ const AdoptionForm = ({ id }) => {
             <Form >
                 <Form.Group controlId="exampleForm.ControlInput1">
                     <Form.Label>Names</Form.Label>
-                    <Form.Control type="email" placeholder="First Name and Family Name" value={name} onChange={(e) => setName(e.target.value)} />
+                    <Form.Control 
+                    type="email" 
+                    placeholder="First Name and Family Name" 
+                    value={name} onChange={(e) => setName(e.target.value)} />
                 </Form.Group>
                 <Form.Group controlId="exampleForm.ControlSelect1">
                     <Form.Label>Do you have permission that you can have a pet where you live?</Form.Label>
-                    <Form.Control as="select" value={permission} onChange={(e) => setPermission(e.target.value)}>
+                    <Form.Control 
+                    as="select" 
+                    value={permission} 
+                    onChange={(e) => setPermission(e.target.value)}>
                         <option></option>
                         <option>yes</option>
                         <option>no</option>
@@ -52,7 +58,12 @@ const AdoptionForm = ({ id }) => {
                 </Form.Group>
                 <Form.Group controlId="exampleForm.ControlTextarea1">
                     <Form.Label>Brief Description of your motiovation to adopt:</Form.Label>
-                    <Form.Control as="textarea" rows={10} value={description} onChange={(e) => setDescription(e.target.value)} />
+                    <Form.Control 
+                    as="textarea" 
+                    rows={10}
+                    value={description}
+                    placeholder={'Description'}
+                    onChange={(e) => setDescription(e.target.value)} />
                 </Form.Group>
             </Form>
             <Button onClick={onSubmit} size="lg" variant="outline-info" block>

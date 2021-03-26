@@ -5,6 +5,7 @@ import AdoptionForm from '../../adoptionComponents/adoptionForm';
 
 
 const Display = ({ props }) => {
+    console.log(props);
     return (
         <Modal
             animation={false}

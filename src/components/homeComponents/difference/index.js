@@ -34,7 +34,7 @@ const Difference = () => {
       <div className={styles.donate2}>
          <img className={styles.paw} src={paw}></img>
          <button onClick={handleShowCard} className={styles.text}>Donate Now</button>
-         {showCard && <Display props={{ show: showCard, handleClose: handleCloseCard }} />}
+         {showCard && <Display props={{ subject: 'card', show: showCard, handleClose: handleCloseCard }} />}
       </div>
 
    </div>
