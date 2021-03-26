@@ -1,17 +1,10 @@
 import RESTAPI from "../REST API";
 
-const post = async (tableName, { name, age, breed, sex, story, url }) => {
+const post = async (tableName, body) => {
 
     let promise = await fetch(RESTAPI.name + `data/${tableName}`, {
         method: 'POST',
-        body: JSON.stringify({
-            name,
-            age,
-            breed,
-            sex,
-            story,
-            url
-        }),
+        body: JSON.stringify(body),
         headers: {
             "Content-Type": "application/json",
         }

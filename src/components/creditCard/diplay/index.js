@@ -1,6 +1,7 @@
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import PaymentForm from '../card';
+import AdoptionForm from '../../adoptionComponents/adoptionForm';
 
 
 const Display = ({ props }) => {
@@ -15,17 +16,21 @@ const Display = ({ props }) => {
         >
 
             <Modal.Body>
-                <PaymentForm />
+                {props.subject === 'card' ? <PaymentForm />
+                    : props.subject === 'form' ? <AdoptionForm id={props.id} />
+                        : null}
             </Modal.Body>
             <Modal.Footer>
-            <Button href={'/'} variant="outline-info" >
-                    Donate
-                </Button>
+                {props.subject === 'card' ?
+                    <Button href={'/'} variant="outline-info" >
+                        Donate
+                    </Button>
+                    : null}
                 <Button variant="outline-secondary" onClick={props.handleClose}>
                     Close
                 </Button>
             </Modal.Footer>
-        </Modal>
+        </Modal >
     )
 }
 export default Display;

@@ -14,6 +14,8 @@ import deleteItem from '../../../utils/deleteData';
 
 const DisplayOne = ({ props }) => {
     const [showCard, setShowCard] = useState(false);
+    const [showForm, setShowForm] = useState(false);
+
     const location = useLocation();
     const history = useHistory();
 
@@ -22,6 +24,14 @@ const DisplayOne = ({ props }) => {
         setShowCard(false);
     };
     const handleShowCard = () => setShowCard(true);
+
+
+    const handleCloseForm = () => {
+        handleClose();
+        setShowForm(false);
+    };
+    const handleShowForm = () => setShowForm(true);
+
 
     const { show, handleClose, subjects } = props;
 
@@ -60,8 +70,10 @@ const DisplayOne = ({ props }) => {
                             </ListGroup>
                             <Card.Text className={styles['paragraph']}>{currentSubject.story}</Card.Text>
                             <Button onClick={handleShowCard} variant="outline-info" className={styles['pop-up-btn']}>Donate to my care &gt;</Button>
-                            {showCard && <Display props={{ show: showCard, handleClose: handleCloseCard }} />}
-                            <Button href={'/adopt'} variant="outline-info">Adopt me &gt;</Button>
+                            <Button onClick={handleShowForm} variant="outline-info">Adopt me &gt;</Button>
+                            {showCard ? <Display props={{ show: showCard, handleClose: handleCloseCard, subject: 'card' }} />
+                                : showForm ? <Display props={{ id: props.show.id, show: showForm, handleClose: handleCloseForm, subject: 'form' }} />
+                                    : null}
                             {localStorage.getItem('isAdmin') === 'true' ? <Button onClick={() => deleteItem(show.id, location.pathname.split('/')[2])} className={styles['delete-button']} variant="danger"> Delete </Button> : null}
                         </Card.Body>
                     </Card>

@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styles from './index.module.css'
 
 const Adoption = () => {
@@ -27,7 +28,9 @@ const Adoption = () => {
 
             Processing applications can take a few days. Once your application passes the first step of processing on paper, we’ll set an appointment date/time for you to visit the shelter to meet the animal! Ideally every member of the household will need to meet the animal at some point during the process.
             You should be prepared to take home the animal the same day as your visit, but it may take more than one meet and greet to approve your application.
-We take multiple applications on all of our animals in an effort to find the best fit possible in a timely manner. If the animal you are interested in is adopted before you can complete the process.</p>
+            We take multiple applications on all of our animals in an effort to find the best fit possible in a timely manner. If the animal you are interested in is adopted before you can complete the process.</p>
+           <br/>
+           <p>Our available animals can be viewed <Link to={'/adopt'}>here</Link>.</p>
         </div>
     )
 }

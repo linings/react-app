@@ -1,6 +1,6 @@
 import React from 'react';
 import { useLocation } from 'react-router';
-import Adoption from '../../adoptionComponents/adoption';
+import Adoption from '../../adoptionComponents/adoptionProccess';
 import Grid from '../../displayImages';
 import LinkComponent from "../../link";
 import Choose from '../chooseApet/choose';
