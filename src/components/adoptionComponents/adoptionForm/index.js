@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { useHistory, useLocation } from 'react-router';
+import getCookie from '../../../utils/cookie';
 import post from '../../../utils/postData';
 
 const AdoptionForm = ({ id }) => {
@@ -12,7 +13,7 @@ const AdoptionForm = ({ id }) => {
 
     const history = useHistory();
     const location = useLocation();
-    
+
     const onSubmit = () => {
         post('adoptionRequests', {
             name,
@@ -21,6 +22,7 @@ const AdoptionForm = ({ id }) => {
             currently,
             description,
             email: localStorage.getItem('username'),
+            requesterId: getCookie('x-auth-token'),
             petId: id,
             typePet: location.pathname.split('/')[2]
         });
@@ -32,17 +34,17 @@ const AdoptionForm = ({ id }) => {
             <Form >
                 <Form.Group controlId="exampleForm.ControlInput1">
                     <Form.Label>Names</Form.Label>
-                    <Form.Control 
-                    type="email" 
-                    placeholder="First Name and Family Name" 
-                    value={name} onChange={(e) => setName(e.target.value)} />
+                    <Form.Control
+                        type="email"
+                        placeholder="First Name and Family Name"
+                        value={name} onChange={(e) => setName(e.target.value)} />
                 </Form.Group>
                 <Form.Group controlId="exampleForm.ControlSelect1">
                     <Form.Label>Do you have permission that you can have a pet where you live?</Form.Label>
-                    <Form.Control 
-                    as="select" 
-                    value={permission} 
-                    onChange={(e) => setPermission(e.target.value)}>
+                    <Form.Control
+                        as="select"
+                        value={permission}
+                        onChange={(e) => setPermission(e.target.value)}>
                         <option></option>
                         <option>yes</option>
                         <option>no</option>
@@ -58,15 +60,15 @@ const AdoptionForm = ({ id }) => {
                 </Form.Group>
                 <Form.Group controlId="exampleForm.ControlTextarea1">
                     <Form.Label>Brief Description of your motiovation to adopt:</Form.Label>
-                    <Form.Control 
-                    as="textarea" 
-                    rows={10}
-                    value={description}
-                    placeholder={'Description'}
-                    onChange={(e) => setDescription(e.target.value)} />
+                    <Form.Control
+                        as="textarea"
+                        rows={10}
+                        value={description}
+                        placeholder={'Description'}
+                        onChange={(e) => setDescription(e.target.value)} />
                 </Form.Group>
             </Form>
-            <Button onClick={onSubmit} size="lg" variant="outline-info" block>
+            <Button onClick={onSubmit} size="lg" variant="outline-info" block >
                 Submit
            </Button>
         </>

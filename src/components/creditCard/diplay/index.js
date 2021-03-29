@@ -2,10 +2,10 @@ import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import PaymentForm from '../card';
 import AdoptionForm from '../../adoptionComponents/adoptionForm';
+import Details from '../../admin/details';
 
 
 const Display = ({ props }) => {
-    console.log(props);
     return (
         <Modal
             animation={false}
@@ -19,7 +19,8 @@ const Display = ({ props }) => {
             <Modal.Body>
                 {props.subject === 'card' ? <PaymentForm />
                     : props.subject === 'form' ? <AdoptionForm id={props.id} />
-                        : null}
+                        : props.subject === 'requestDetails' ? <Details props={props} />
+                            : null}
             </Modal.Body>
             <Modal.Footer>
                 {props.subject === 'card' ?

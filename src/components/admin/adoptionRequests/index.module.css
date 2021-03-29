@@ -1,8 +1,11 @@
 .table{
     float: left;
     width: 50%;
-    margin-top: 200px;
     margin-left: 4%;
+}
+h2{
+    margin: 200px 0 60px 15%;
+    display: inline-block;
 }
 .pet-current{
     width: 1000px;
