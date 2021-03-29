@@ -4,13 +4,14 @@ import Spinner from 'react-bootstrap/Spinner';
 import Button from 'react-bootstrap/Button';
 import styles from './index.module.css';
 import edit from '../../../utils/editUserInfo';
-import { useHistory } from "react-router";
+import { useHistory,useLocation } from "react-router";
 
 const Details = (props) => {
     let [request, getRequest] = useState({});
     let [requestedAnimal, getRequestedAnimal] = useState({});
 
     let history = useHistory();
+    const location = useLocation();
 
     const displayCurrentRequest = async () => {
         let result = await getOne('adoptionRequests', props.props.id);
@@ -27,7 +28,7 @@ const Details = (props) => {
 
     useEffect(() => {
         displayCurrentRequest();
-    }, [])
+    }, [location])
 
     if (Object.keys(request).length === 0 && Object.keys(requestedAnimal).length === 0) {
         return <Spinner className={styles.spinner} animation="border" />
@@ -36,7 +37,7 @@ const Details = (props) => {
     const sendAnswer = async (e) => {
         let response = e.target.parentNode.children[1].value;
         edit(response, request.requesterId);
-        history.push('/');
+        history.push(`/upload/${location.pathname.split('/')[2]}`);
     }
 
     return (

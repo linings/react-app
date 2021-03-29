@@ -11,8 +11,7 @@ const Information = () => {
         <br/>
         <b>Please view our adoptable pets here if you’re interested in adoption!</b>
         <br/>
-        Help us save animals. 
-        <br />Join Us:</div>
+        Help us save animals.</div>
         </div>
     )
 }

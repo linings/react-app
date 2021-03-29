@@ -30,3 +30,7 @@ width: 400px;
 .description{
     width: 400px;
 }
+.no-requests{
+    margin: 50px 0 60px 17%;
+    display: block;
+}
