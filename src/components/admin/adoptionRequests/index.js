@@ -10,6 +10,7 @@ import { useHistory } from "react-router";
 
 
 
+
 const AdoptionRequestsList = () => {
     const [requests, setRequests] = useState([]);
     const [showCard, setShowCard] = useState({ id: '', show: false });

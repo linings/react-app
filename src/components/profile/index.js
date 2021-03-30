@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 
 import Popover from 'react-bootstrap/Popover'
 import Overlay from 'react-bootstrap/Overlay'
@@ -13,8 +13,11 @@ const Profile = ({ message }) => {
     const context = useContext(UserContext);
     const history = useHistory();
 
+    context.message = message;
+
     const [show, setShow] = useState(false);
     const [target, setTarget] = useState(null);
+    const ref = useRef(null);
 
     const handleClick = (event) => {
         setMessageRead(true);
@@ -32,19 +35,22 @@ const Profile = ({ message }) => {
         localStorage.removeItem('password');
         localStorage.removeItem('isAdmin');
         context.user = "";
+        context.message = "";
+        console.log(context);
         history.push('/');
     }
 
     return (
         <div>
-            <div className={styles['user-profile']}>
+            <div ref={ref} className={styles['user-profile']}>
                 <button onClick={handleClick} className={styles['username']}>{localStorage.getItem('username')}</button>
-                {!isMessageRead ? <div className={styles.message}></div> : null}
+                {context.message ? null : <div className={styles.message}></div>}
                 <Overlay
-                    animation={false}
+                    transition={false}
                     show={show}
                     target={target}
                     placement="bottom"
+                    container={ref.current}
                     containerPadding={20}
                 >
                     <Popover id="popover-contained">

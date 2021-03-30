@@ -6,14 +6,24 @@ import PageLayout from "../../components/page-layout";
 import UserContext from "../../context";
 import authenticate from "../../utils/authenticate";
 import RESTAPI from "../../REST API";
+import handleErrors from "../../utils/errors";
 
 const Register = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
 
+  let [errors, setErrors] = useState({ username: "", password: "", repeatPassword: "" });
+
   const context = useContext(UserContext);
   const history = useHistory();
+
+
+  const checkForError = (e) => {
+    handleErrors(e, setErrors);
+    console.log(errors);
+  }
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -39,16 +49,17 @@ const Register = () => {
               <form className={styles.box} onSubmit={handleSubmit}>
                 <h1>Register</h1>
                 <p className={styles["text-muted"]}>
-                  Please enter your username , password and re-password!
+                  Please enter your email , password and re-password!
                 </p>
                 <input
                   type="text"
                   name="username"
-                  placeholder="Username"
+                  placeholder="Email"
                   value={username}
                   onChange={(e) => {
                     setUsername(e.target.value);
                   }}
+                  onBlur={checkForError}
                 ></input>
                 <input
                   type="password"
@@ -58,17 +69,22 @@ const Register = () => {
                   onChange={(e) => {
                     setPassword(e.target.value);
                   }}
+                  onBlur={checkForError}
                 ></input>
                 <input
                   type="password"
-                  name="repeat-password"
+                  name="repeatPassword"
                   placeholder="Re-Password"
                   value={repeatPassword}
                   onChange={(e) => {
                     setRepeatPassword(e.target.value);
                   }}
+                  onBlur={checkForError}
                 ></input>
                 <input type="submit" name="" value="Register" href="#"></input>
+                <span className={styles.errors} style={{color: "red"}}>{errors.usernameValue}</span>
+                <span className={styles.errors} style={{color: "red"}}>{errors.passwordValue}</span>
+                <span className={styles.errors} style={{color: "red"}}>{errors.repeatPasswordValue}</span>
                 <div className={styles["col-md-12"]}></div>
               </form>
             </div>

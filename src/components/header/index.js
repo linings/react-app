@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, {useEffect, useState } from "react";
 
 import styles from "./index.module.css";
 import LinkComponent from "../link";
@@ -6,7 +6,6 @@ import getNavigation from "../../utils/navigation";
 import Profile from "../profile";
 import getUserData from '../../utils/getUserData'
 import getCookie from "../../utils/cookie";
-
 
 const Header = () => {
   const [userInfo, setUserInfo] = useState({});
@@ -16,9 +15,12 @@ const Header = () => {
 
   const isMessages = async () => {
     let id = getCookie('x-auth-token');
-    let userInfo = await getUserData(id);
 
-    setUserInfo(userInfo);
+    if (id) {
+      let userInfo = await getUserData(id);
+
+      setUserInfo(userInfo);
+    }
   }
 
   useEffect(() => {

@@ -1,8 +1,8 @@
 .box {
   width: 500px;
-  height: 400px;
+  height: 450px;
   position: fixed;
-  top: 50%;
+  top: 55%;
   left: 50%;
   transform: translate(-50%, -50%);
   background: #dcf6f4;

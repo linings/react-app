@@ -64,3 +64,6 @@
 .box input[type="submit"]:hover {
   background: #2ecc71;
 }
+.errors{
+  color: red;
+}

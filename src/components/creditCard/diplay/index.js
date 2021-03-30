@@ -3,9 +3,11 @@ import Button from 'react-bootstrap/Button';
 import PaymentForm from '../card';
 import AdoptionForm from '../../adoptionComponents/adoptionForm';
 import Details from '../../admin/details';
+import { useHistory } from 'react-router';
 
 
 const Display = ({ props }) => {
+
     return (
         <Modal
             animation={false}
