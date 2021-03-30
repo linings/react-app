@@ -10,7 +10,9 @@ export default class PaymentForm extends React.Component {
         focus: '',
         name: '',
         number: '',
+        error: ''
     };
+
 
     handleInputFocus = (e) => {
         this.setState({ focus: e.target.name });
@@ -20,6 +22,55 @@ export default class PaymentForm extends React.Component {
         const { name, value } = e.target;
 
         this.setState({ [name]: value });
+    }
+    componentWillMount() {
+        this.setState({ error: "" });
+    }
+    checkForError = (e) => {
+        e.preventDefault();
+
+        const { name, value } = e.target;
+
+        switch (name) {
+            case 'amount':
+                let amount =
+                    +value <= 0 || isNaN(value)
+                        ? 'Amount must be positive number!'
+                        : "";
+
+                this.setState({ error: amount });
+                break;
+            case 'number':
+                let number =
+                    value.length !== 16
+                        ? 'Number of card must contain 16 digits!'
+                        : "";
+                this.setState({ error: number });
+                break;
+            // case 'name':
+            //     let name =
+            //         (/\w+\s\w+/).test(value)
+            //             ? 'First and Last name written on card!'
+            //             : "";
+            //     this.setState({ error: name });
+            //     break;
+            // case 'expiry':
+            //     let expiry =
+            //         (/^[0-9]{1,2}\/[0-9]{1,2}$/).test(value)
+            //             ? 'Add month / year of expiry!'
+            //             : "";
+            //     this.setState({ error: expiry });
+            //     break;
+            case 'cvc':
+                let cvc =
+                    value.length !== 3
+                        ? 'Security must be 3 digits!'
+                        : "";
+                this.setState({ error: cvc });
+                break;
+            default:
+                break;
+        }
     }
 
     render() {
@@ -39,8 +90,8 @@ export default class PaymentForm extends React.Component {
                     We're committed to providing the best possible care for their specific needs
                     while they wait. You can create hope for them: your donation provides healthy
                     food, comfortable bedding, vital enrichment, training and medical intervention.
-                    <br/>
-                   <b>Donate today!</b> 
+                    <br />
+                    <b>Donate today!</b>
                 </p>
 
                 <form>
@@ -49,6 +100,7 @@ export default class PaymentForm extends React.Component {
                             className={styles['first-input']}
                             type="tel"
                             name="amount"
+                            onBlur={this.checkForError}
                             placeholder="Amount"
                         />
                         EUR
@@ -58,6 +110,7 @@ export default class PaymentForm extends React.Component {
                         name="number"
                         placeholder="Card number"
                         onChange={this.handleInputChange}
+                        onBlur={this.checkForError}
                         onFocus={this.handleInputFocus}
                     />
                     <div>
@@ -66,6 +119,7 @@ export default class PaymentForm extends React.Component {
                             name="name"
                             placeholder="Card Name"
                             onChange={this.handleInputChange}
+                            onBlur={this.checkForError}
                             onFocus={this.handleInputFocus}
                         />
                     </div>
@@ -75,6 +129,7 @@ export default class PaymentForm extends React.Component {
                             name="expiry"
                             placeholder="Card Expiry"
                             onChange={this.handleInputChange}
+                            onBlur={this.checkForError}
                             onFocus={this.handleInputFocus}
                         />
                     </div>
@@ -83,9 +138,11 @@ export default class PaymentForm extends React.Component {
                         name="cvc"
                         placeholder="Card cvc"
                         onChange={this.handleInputChange}
+                        onBlur={this.checkForError}
                         onFocus={this.handleInputFocus}
                     />
-
+                    {console.log(this.state.error)}
+                    {this.state.error ? <div style={{ color: "red" }}>{this.state.error}</div> : null}
                 </form>
             </div>
         );

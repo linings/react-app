@@ -9,7 +9,6 @@ import RESTAPI from "../../REST API";
 import handleErrors from "../../utils/errors";
 
 const Login = () => {
-  let errorMessage = '';
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
