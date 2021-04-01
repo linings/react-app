@@ -6,6 +6,7 @@ import Login from "./pages/login";
 import Register from "./pages/register";
 import Donate from "./components/donateComponents/donate";
 import Admin from "./components/admin/adminPage";
+import Messages from "./components/messages";
 
 const Navigation = () => {
   return (
@@ -16,6 +17,7 @@ const Navigation = () => {
         <Route path="/register" component={Register} />
         <Route path="/adopt" component={Donate} />
         <Route path="/upload" component={Admin} />
+        <Route path="/messages" component={Messages} />
       </Switch>
     </BrowserRouter>
   );

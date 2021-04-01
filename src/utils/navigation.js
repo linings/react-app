@@ -29,8 +29,8 @@ const getNavigation = (isAdmin) => {
   const authLinks = [
     {
       image: iconDog,
-      title: "Donate",
-      href: "/donate",
+      title: "messages",
+      href: "/messages",
     },
     {
       image: iconGiraffe,
