@@ -9,6 +9,7 @@ import RESTAPI from "../../REST API";
 import handleErrors from "../../utils/errors";
 
 const Register = () => {
+  const [name, setName] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
@@ -29,6 +30,7 @@ const Register = () => {
     e.preventDefault();
 
     authenticate(RESTAPI.name + "data/Users", {
+      name,
       username,
       password,
       repeatPassword,
@@ -62,6 +64,16 @@ const Register = () => {
                   onBlur={checkForError}
                 ></input>
                 <input
+                  type="text"
+                  name="name"
+                  placeholder="First and Last name"
+                  value={name}
+                  onChange={(e) => {
+                    setName(e.target.value);
+                  }}
+                  onBlur={checkForError}
+                ></input>
+                <input
                   type="password"
                   name="password"
                   placeholder="Password"
@@ -82,9 +94,9 @@ const Register = () => {
                   onBlur={checkForError}
                 ></input>
                 <input type="submit" name="" value="Register" href="#"></input>
-                <span className={styles.errors} style={{color: "red"}}>{errors.usernameValue}</span>
-                <span className={styles.errors} style={{color: "red"}}>{errors.passwordValue}</span>
-                <span className={styles.errors} style={{color: "red"}}>{errors.repeatPasswordValue}</span>
+                <span className={styles.errors} style={{ color: "red" }}>{errors.usernameValue}</span>
+                <span className={styles.errors} style={{ color: "red" }}>{errors.passwordValue}</span>
+                <span className={styles.errors} style={{ color: "red" }}>{errors.repeatPasswordValue}</span>
                 <div className={styles["col-md-12"]}></div>
               </form>
             </div>

@@ -4,11 +4,14 @@ import Spinner from 'react-bootstrap/Spinner';
 import Button from 'react-bootstrap/Button';
 import styles from './index.module.css';
 import edit from '../../../utils/editUserInfo';
-import { useHistory,useLocation } from "react-router";
+import { useHistory, useLocation } from "react-router";
+import getUserData from "../../../utils/getUserData";
+import getCookie from "../../../utils/cookie";
 
 const Details = (props) => {
-    let [request, getRequest] = useState({});
-    let [requestedAnimal, getRequestedAnimal] = useState({});
+    let [request, setRequest] = useState({});
+    let [requestedAnimal, setRequestedAnimal] = useState({});
+    let [requesterMessages, setRequesterMessages] = useState({});
 
     let history = useHistory();
     const location = useLocation();
@@ -16,14 +19,19 @@ const Details = (props) => {
     const displayCurrentRequest = async () => {
         let result = await getOne('adoptionRequests', props.props.id);
 
-        getRequest(result);
+        setRequest(result);
         displayCurrentRequestedAnimal(result.typePet, result.petId);
     }
 
     const displayCurrentRequestedAnimal = async (typePet, id) => {
         let result = await getOne(typePet, id);
 
-        getRequestedAnimal(result);
+        setRequestedAnimal(result);
+    }
+
+    const getRequesterMessages = async (id) => {
+        let result = await getUserData(id);
+        return result.messages;
     }
 
     useEffect(() => {
@@ -35,8 +43,25 @@ const Details = (props) => {
     }
 
     const sendAnswer = async (e) => {
-        let response = e.target.parentNode.children[1].value;
-        edit(response, request.requesterId);
+        e.preventDefault();
+
+        let initialMessage = await getRequesterMessages(request.requesterId);
+
+        console.log(initialMessage);
+
+        let text = e.target.answer.value;
+
+        let currentUserNames = localStorage.getItem('names');
+        let newMessage = {};
+        newMessage[new Date()] = text;
+
+        if (!initialMessage.hasOwnProperty(currentUserNames)) {
+            initialMessage[currentUserNames] = [];
+        }
+        initialMessage[currentUserNames].push(newMessage);
+
+        edit( initialMessage, request.requesterId);  // to oposite messages
+        edit(initialMessage , getCookie('x-auth-token'));  // to your messages
         history.push(`/upload/${location.pathname.split('/')[2]}`);
     }
 
@@ -63,8 +88,10 @@ const Details = (props) => {
             </div>
             <div>
                 <h5> Answer to request:</h5>
-                <input className={styles.answer} placeholder="Answer here..." />
-                <Button onClick={(e) => sendAnswer(e)} className={styles.send} variant="outline-dark">Send</Button>
+                <form onSubmit={(e) => sendAnswer(e)}>
+                    <input className={styles.answer} name="answer" placeholder="Answer here..." />
+                    <Button type="submit" className={styles.send} variant="outline-dark">Send</Button>
+                </form>
             </div>
         </div>
     )

@@ -46,9 +46,14 @@ const getNavigation = (isAdmin) => {
 
   const adminLinks = [
     {
-      image: iconDog,
+      image: iconElephant,
       title: "Upload",
       href: "/upload",
+    },
+      {
+      image: iconDog,
+      title: "messages",
+      href: "/messages",
     },
     {
       image: iconGiraffe,

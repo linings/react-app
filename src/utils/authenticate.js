@@ -1,5 +1,5 @@
 const authenticate = async (url, body) => {
-  const { username, password, repeatPassword } = body;
+  const { name, username, password, repeatPassword } = body;
 
   if (repeatPassword) {
     if (password !== repeatPassword) {
@@ -16,13 +16,15 @@ const authenticate = async (url, body) => {
         body: JSON.stringify({
           email: username,
           password,
+          name,
+          messages: {}
         }),
         headers: {
           "Content-Type": "application/json",
         },
       });
       let response = await promise.json();
-      console.log(response.message);
+      console.log(response);
       attachUserDetails(response, username, password);
     } else {
       console.log("Diff passes!");
@@ -52,6 +54,7 @@ const attachUserDetails = (response, username, password) => {
   localStorage.setItem('username', username);
   localStorage.setItem('password', password);
   localStorage.setItem('isAdmin', response.isAdmin);
+  localStorage.setItem('names', response.name);
 }
 
 export default authenticate;

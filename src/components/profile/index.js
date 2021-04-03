@@ -34,6 +34,7 @@ const Profile = ({ message }) => {
         localStorage.removeItem('username');
         localStorage.removeItem('password');
         localStorage.removeItem('isAdmin');
+        localStorage.removeItem('names');
         context.user = "";
         context.message = "";
         console.log(context);
@@ -43,23 +44,7 @@ const Profile = ({ message }) => {
     return (
         <div>
             <div ref={ref} className={styles['user-profile']}>
-                <button onClick={handleClick} className={styles['username']}>{localStorage.getItem('username')}</button>
-                {context.message ? null : <div className={styles.message}></div>}
-                <Overlay
-                    transition={false}
-                    show={show}
-                    target={target}
-                    placement="bottom"
-                    container={ref.current}
-                    containerPadding={20}
-                >
-                    <Popover id="popover-contained">
-                        <Popover.Title as="h4">You have answer by administrators to yoyr request!</Popover.Title>
-                        <Popover.Content>
-                            <strong>Admin:</strong> - <i>{message}</i>
-                        </Popover.Content>
-                    </Popover>
-                </Overlay>
+                <button onClick={handleClick} className={styles['username']}>{localStorage.getItem('names')}</button>
                 {cookie ? <button className={styles['user-icon']} onClick={logout}>Logout</button> : null}
             </div>
         </div>

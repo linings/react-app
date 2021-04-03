@@ -8,53 +8,57 @@ import { useEffect, useState } from 'react';
 import getCookie from '../../../utils/cookie';
 
 const Main = () => {
-    let [sameUser, setSameUser] = useState(false);
     let [messages, setMessages] = useState([]);
     let [initialMessage, setInitialMessage] = useState({});
     let [text, setText] = useState([]);
+    let [messageWrapper, setMessageWrapper] = useState([]);
 
     const getMessages = async () => {
         let promise = await getUserData(getCookie('x-auth-token'));
         let messages = promise.messages;
 
-        let same = Object.entries(messages).some(u => u[0] === localStorage.getItem('username'));
-        console.log(same, 'IS SAME?');
-
-        setSameUser(same);
         setMessages(Object.entries(messages));
         setInitialMessage(messages);
     }
     // let d1 = new Date;  
     // console.log(Date.parse(d1) == Date.parse('Fri Apr 02 2021 22:00:45 GMT+0300 (Eastern European Summer Time)'));
 
-    const handleSubmit = (e, nameOfPersonYouWriteWith) => {
+    const uniteMessages = () => {
+        for (const message of messages) {
+            for (const singleMessage of message[1]) {
+                let chat = {};
+                chat[message[0]] = singleMessage;
+                messageWrapper.push(chat);
+            }
+        }
+        console.log(messageWrapper);
+        setMessageWrapper(messageWrapper);
+    }
+
+    const handleSubmit = (e) => {
         e.preventDefault();
 
-        let currentUsername = localStorage.getItem('username');
+        let currentUserNames = localStorage.getItem('names');
         let newMessage = {};
         newMessage[new Date()] = text;
-        console.log(sameUser);
+
+        if (!initialMessage.hasOwnProperty(currentUserNames)) {
+            initialMessage[currentUserNames] = [];
+        }
+        initialMessage[currentUserNames].push(newMessage);
+
         console.log(initialMessage);
 
-        if (sameUser) {
-            initialMessage[nameOfPersonYouWriteWith].push({'you':newMessage}); // Pushvash, no ot imeto na sushtiq user...
-        } else {
-            if (!initialMessage.hasOwnProperty(currentUsername)) {
-                initialMessage[currentUsername] = [];
-            }
-            initialMessage[currentUsername].push(newMessage);
-        }
-        editUserInfo({ 'messages': initialMessage }, getCookie('x-auth-token'));
+        editUserInfo(initialMessage, getCookie('x-auth-token'));
     }
     useEffect(() => {
         getMessages();
+        uniteMessages();
     }, [])
     return (
         <div className={styles.wrapper}  >
+
             <Tab.Container id="left-tabs-example" transition={false} defaultActiveKey="first">
-
-
-
                 <span className={styles.wr}>
                     {Object.keys(messages).length !== 0 ? messages.map((message, i) => {
                         return <Nav variant="pills" key={i} fill className={styles['tabs']} as="ul">
@@ -67,6 +71,7 @@ const Main = () => {
 
                 <Tab.Content className={styles['message-wrapper']} as="span">
                     {messages.map((message, i) => {
+                        {console.log(Object.values(messageWrapper))}
                         return <Tab.Pane key={i} eventKey={`${i + 1}`} as="span">
                             <span>
                                 <h5 className={styles.name}>{message[0]}</h5>
@@ -75,7 +80,7 @@ const Main = () => {
 
                                         return <div className={styles['single-message']}
                                             key={index}>
-                                            {Object.entries(m)[0][0].split('G')[0]}: {Object.entries(m)[0][1]}
+                                            {message[0]}:{Object.entries(m)[0][0].split('G')[0]}: {Object.entries(m)[0][1]}
                                         </div>
                                     })}
                                 </span>
