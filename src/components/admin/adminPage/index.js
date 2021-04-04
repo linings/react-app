@@ -1,6 +1,6 @@
 import styles from './index.module.css';
 import PageLayout from "../../page-layout";
-import { useHistory, useLocation } from 'react-router';
+import { useLocation } from 'react-router';
 import { useState } from 'react';
 import post from '../../../utils/postData';
 import AdoptionRequestsList from '../adoptionRequests';

@@ -9,9 +9,6 @@ import RESTAPI from "../../REST API";
 import handleErrors from "../../utils/errors";
 
 const Login = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-
   let [errors, setErrors] = useState({ username: "", password: "" });
 
   const context = useContext(UserContext);
@@ -23,17 +20,27 @@ const Login = () => {
 
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault(); 
 
-    await authenticate(RESTAPI.name + "users/login", {
-      username,
-      password,
-    });
+    let username = e.target.username.value;
+    let password = e.target.password.value;
 
-    if (document.cookie) {
-      context.user = username;
-      history.push("/");
-    }
+    await authenticate(
+      RESTAPI.name + "users/login",
+      {
+        username,
+        password,
+      },
+      (user) => {
+        context.user = user;
+        context.user.loggedIn = true;
+        history.push("/");
+      },
+      (error) => {
+        console.log('Error', error);
+      });
+      
+      console.log(context);
   };
 
   return (
@@ -52,17 +59,13 @@ const Login = () => {
                   type="text"
                   name="username"
                   placeholder="Email"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
                   onBlur={checkForError}
                 ></input>
                 <input
                   type="password"
                   name="password"
                   placeholder="Password"
-                  value={password}
                   onBlur={checkForError}
-                  onChange={(e) => setPassword(e.target.value)}
                 ></input>
                 <input
                   type="submit"

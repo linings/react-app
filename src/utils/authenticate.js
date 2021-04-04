@@ -1,4 +1,4 @@
-const authenticate = async (url, body) => {
+const authenticate = async (url, body, onSuccess, onFailure) => {
   const { name, username, password, repeatPassword } = body;
 
   if (repeatPassword) {
@@ -25,9 +25,11 @@ const authenticate = async (url, body) => {
       });
       let response = await promise.json();
       console.log(response);
-      attachUserDetails(response, username, password);
+
+      attachUserDetails(response, username, password, onSuccess);
     } else {
-      console.log("Diff passes!");
+      console.log("Different passwords!");
+      onFailure('Different passwords!')
     }
   } else {
     let promise = await fetch(url, {
@@ -43,18 +45,27 @@ const authenticate = async (url, body) => {
     let response = await promise.json();
 
     if (response.errorData) {
+      onFailure(response.message)
       throw response.message;
     }
-    attachUserDetails(response, username, password);
+    
+    attachUserDetails(response, username, password, onSuccess);
   }
 };
 
-const attachUserDetails = (response, username, password) => {
+const attachUserDetails = (response, username, password, onSuccess) => {
   document.cookie = `x-auth-token=${response.ownerId}`;
   localStorage.setItem('username', username);
   localStorage.setItem('password', password);
   localStorage.setItem('isAdmin', response.isAdmin);
   localStorage.setItem('names', response.name);
+
+  onSuccess({
+    username,
+    password,
+    isAdmin: response.isAdmin,
+    names: response.name
+  })
 }
 
 export default authenticate;

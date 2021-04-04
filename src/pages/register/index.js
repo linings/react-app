@@ -9,11 +9,6 @@ import RESTAPI from "../../REST API";
 import handleErrors from "../../utils/errors";
 
 const Register = () => {
-  const [name, setName] = useState("");
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [repeatPassword, setRepeatPassword] = useState("");
-
   let [errors, setErrors] = useState({ username: "", password: "", repeatPassword: "" });
 
   const context = useContext(UserContext);
@@ -29,16 +24,25 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    let name = e.target.name.value;
+    let username = e.target.username.value;
+    let password = e.target.password.value;
+    let repeatPassword = e.target.repeatPassword.value;
+
     authenticate(RESTAPI.name + "data/Users", {
       name,
       username,
       password,
       repeatPassword,
-    });
-    if (document.cookie) {
-      context.user = username;
-      history.push("/");
-    }
+    },
+      (user) => {
+        context.user = user;
+        context.user.loggedIn = true;
+        history.push("/");
+      },
+      (error) => {
+        console.log('Error', error);
+      });
   };
 
   return (
@@ -51,46 +55,30 @@ const Register = () => {
               <form className={styles.box} onSubmit={handleSubmit}>
                 <h1>Register</h1>
                 <p className={styles["text-muted"]}>
-                  Please enter your email , password and re-password!
+                  Please enter your email, names and password!
                 </p>
                 <input
                   type="text"
                   name="username"
                   placeholder="Email"
-                  value={username}
-                  onChange={(e) => {
-                    setUsername(e.target.value);
-                  }}
                   onBlur={checkForError}
                 ></input>
                 <input
                   type="text"
                   name="name"
                   placeholder="First and Last name"
-                  value={name}
-                  onChange={(e) => {
-                    setName(e.target.value);
-                  }}
                   onBlur={checkForError}
                 ></input>
                 <input
                   type="password"
                   name="password"
                   placeholder="Password"
-                  value={password}
-                  onChange={(e) => {
-                    setPassword(e.target.value);
-                  }}
                   onBlur={checkForError}
                 ></input>
                 <input
                   type="password"
                   name="repeatPassword"
                   placeholder="Re-Password"
-                  value={repeatPassword}
-                  onChange={(e) => {
-                    setRepeatPassword(e.target.value);
-                  }}
                   onBlur={checkForError}
                 ></input>
                 <input type="submit" name="" value="Register" href="#"></input>

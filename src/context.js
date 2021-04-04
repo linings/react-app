@@ -1,8 +1,7 @@
 import React from "react";
 
 const UserContext = React.createContext({
-  message: '',
-  user: "",
+  user: null,
   logIn: () => { },
   logOut: () => { },
 });

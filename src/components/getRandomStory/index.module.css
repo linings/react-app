@@ -9,8 +9,8 @@
    width: 500px;
    height: 350px;;
    font-family: Roboto;
-   font-style: normal;
-   font-size: 25px;
+   font-style: italic;
+   font-size: 20px;
    text-align: center;
    background-color: black;
    opacity: 0.4;
@@ -32,6 +32,6 @@
     color: white;
     font-family: Roboto;
     font-style: italic;
-    font-size: 30px;
+    font-size: 20px;
     text-align: center;
  }

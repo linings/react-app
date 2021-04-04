@@ -1,4 +1,4 @@
-import React, {useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import styles from "./index.module.css";
 import LinkComponent from "../link";
@@ -8,28 +8,12 @@ import getUserData from '../../utils/getUserData'
 import getCookie from "../../utils/cookie";
 
 const Header = () => {
-  const [userInfo, setUserInfo] = useState({});
-
   const isAdmin = localStorage.getItem('isAdmin');
   const links = getNavigation(isAdmin);
 
-  const isMessages = async () => {
-    let id = getCookie('x-auth-token');
-
-    if (id) {
-      let userInfo = await getUserData(id);
-
-      setUserInfo(userInfo);
-    }
-  }
-
-  useEffect(() => {
-    isMessages();
-  }, []);
-
   return (
     <header className={styles.navigation}>
-      <Profile message={userInfo.response} />
+      <Profile />
       {links.map((navElement) => {
         return (
           <LinkComponent
