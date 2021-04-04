@@ -44,6 +44,7 @@
     float: right;
     border-bottom: none;
     margin: 10px 0 5px 0;
+    overflow: scroll;
 } 
 .wr{
     display: flex;
@@ -61,9 +62,21 @@ a:active{
     color: black;
 }
 .single-message{
-    margin-top: 8px;
-    background-color: rgb(236, 249, 250);
+    background-color: rgb(249, 255, 255);
     border-radius: 5px;
     display: table;
     color: rgb(80, 75, 75);
+    margin-bottom: 8px;
+}
+.message-time{
+    font-size: 10px;
+    color: grey;
+}
+.no-messages{
+    display: inline-block;
+    margin-top: 150px;
+    margin-left: 30%;
+    font-size: 25px;
+    font-weight: 500;
+    font-style: oblique;
 }
