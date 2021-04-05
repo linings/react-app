@@ -27,8 +27,10 @@ const AdoptionRequestsList = () => {
 
     const deleteCard = (e) => {
         let id = e.target.parentNode.parentNode.id;
-        deleteItem(id, 'adoptionRequests');
-        history.push(`/upload/${location.pathname.split('/')[2]}`);
+        deleteItem(id, 'adoptionRequests').then(() => {
+            getRequests();
+        });
+        // history.push(`/upload/${location.pathname.split('/')[2]}`);
     }
     const getRequests = async () => {
         let requests = await getData('adoptionRequests');

@@ -1,6 +1,6 @@
 import styles from './index.module.css';
 import PageLayout from "../../page-layout";
-import { useLocation } from 'react-router';
+import { useHistory, useLocation } from 'react-router';
 import { useState } from 'react';
 import post from '../../../utils/postData';
 import AdoptionRequestsList from '../adoptionRequests';
@@ -8,6 +8,7 @@ import GetRandomStory from '../../getRandomStory'
 
 const Admin = () => {
     const location = useLocation();
+    const history = useHistory();
     const tableName = location.pathname.split('/')[2];
 
     const [name, setName] = useState('');
@@ -28,6 +29,7 @@ const Admin = () => {
             ? post(tableName, { name, story, url })
             : post(tableName, { name, age, breed, sex, story, url });
 
+        // history.push('/upload');
     }
 
     return (
