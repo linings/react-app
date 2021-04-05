@@ -7,7 +7,7 @@ import styles from './index.module.css';
 
 const Grid = ({ path }) => {
     const [show, setShow] = useState({ status: false, id: null });
-    let [subjects, setSubjects] = useState([]);
+    const  [subjects, setSubjects] = useState([]);
 
     const handleClose = () => setShow(false);
     const handleShow = (id) => {

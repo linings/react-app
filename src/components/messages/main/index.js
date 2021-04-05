@@ -5,13 +5,15 @@ import editUserInfo from '../../../utils/editUserInfo';
 import { useEffect, useState } from 'react';
 import getCookie from '../../../utils/cookie';
 import unite from './unite';
+import { useHistory } from 'react-router';
+import { get } from 'react-hook-form';
 // import getNames from './getNames';
 
 const Main = () => {
-    let [initialMessage, setInitialMessage] = useState({});
-    let [text, setText] = useState([]);
-    let [wrappedMessages, setWrappedMessages] = useState([]);
-    // let [users, setUsers] = useState([]);
+    const [initialMessage, setInitialMessage] = useState({});
+    const [text, setText] = useState([]);
+    const [wrappedMessages, setWrappedMessages] = useState([]);
+    // const [users, setUsers] = useState([]);
 
     const getMessages = async () => {
         let promise = await getUserData(getCookie('x-auth-token'));
@@ -37,12 +39,16 @@ const Main = () => {
         }
         initialMessage[currentUserNames].push(newMessage);
 
-        editUserInfo(initialMessage, getCookie('x-auth-token'));
+        editUserInfo(initialMessage, getCookie('x-auth-token'))
+            .then((result) => {
+                setInitialMessage(result.messages);
+            });
         // editUserInfo(initialMessage, getCookie('x-auth-token')); // Save comment on other user!
+        setText("");
     }
     useEffect(() => {
         getMessages();
-    }, [])
+    }, [initialMessage])
     return (
         <div className={styles.wrapper}>
             {wrappedMessages.length !== 0 ? <span>

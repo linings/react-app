@@ -6,9 +6,10 @@ import UserContext from "./context";
 import context from './context.js'
 
 const Auth = (props) => {
-    let [user, setUser] = useState(null);
+    const [user, setUser] = useState(null);
 
     const logIn = () => {
+        console.log(user);
         setUser({
             ...user,
             loggedIn: true,

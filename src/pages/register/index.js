@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { createBrowserHistory } from 'history';
+// import { useHistory } from "react-router-dom";
 
 import styles from "./index.module.css";
 import PageLayout from "../../components/page-layout";
@@ -9,10 +10,11 @@ import RESTAPI from "../../REST API";
 import handleErrors from "../../utils/errors";
 
 const Register = () => {
-  let [errors, setErrors] = useState({ username: "", password: "", repeatPassword: "" });
+  const [errors, setErrors] = useState({ username: "", password: "", repeatPassword: "" });
 
   const context = useContext(UserContext);
-  const history = useHistory();
+  // const history = useHistory();
+  let history = createBrowserHistory({ forceRefresh: true });
 
 
   const checkForError = (e) => {

@@ -9,9 +9,9 @@ import getUserData from "../../../utils/getUserData";
 import getCookie from "../../../utils/cookie";
 
 const Details = (props) => {
-    let [request, setRequest] = useState({});
-    let [requestedAnimal, setRequestedAnimal] = useState({});
-    let [requesterMessages, setRequesterMessages] = useState({});
+    const [request, setRequest] = useState({});
+    const [requestedAnimal, setRequestedAnimal] = useState({});
+    const  [requesterMessages, setRequesterMessages] = useState({});
 
     let history = useHistory();
     const location = useLocation();

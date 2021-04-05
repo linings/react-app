@@ -1,3 +1,5 @@
+// import { hashPassword } from "./hashPassword";
+
 const authenticate = async (url, body, onSuccess, onFailure) => {
   const { name, username, password, repeatPassword } = body;
 
@@ -11,6 +13,9 @@ const authenticate = async (url, body, onSuccess, onFailure) => {
 
   if (repeatPassword) {
     if (password === repeatPassword) {
+
+      // let hashedPassword = hashPassword(password);
+
       let promise = await fetch(url, {
         method: "POST",
         body: JSON.stringify({
@@ -48,7 +53,9 @@ const authenticate = async (url, body, onSuccess, onFailure) => {
       onFailure(response.message)
       throw response.message;
     }
-    
+
+    // let hashedPassword = hashPassword(password);
+
     attachUserDetails(response, username, password, onSuccess);
   }
 };

@@ -4,7 +4,7 @@ import getData from '../../utils/getData';
 import styles from './index.module.css';
 
 const GetRandomStory = () => {
-    let [story, setStory] = useState([]);
+    const [story, setStory] = useState([]);
 
     async function getStory() {
         let stories = await getData('stories');

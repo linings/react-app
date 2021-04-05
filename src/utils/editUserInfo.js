@@ -9,7 +9,7 @@ const edit = async (messages, id) => {
             "Content-Type": "application/json",
         }
     });
-    let result = await promise.json();
+    return await promise.json();
 }
 
 export default edit;

@@ -10,11 +10,11 @@ import RESTAPI from "../../REST API";
 import handleErrors from "../../utils/errors";
 
 const Login = () => {
-  let [errors, setErrors] = useState({ username: "", password: "" });
+  const [errors, setErrors] = useState({ username: "", password: "" });
 
   const context = useContext(UserContext);
   // const history = useHistory();    
-  let history = createBrowserHistory({ forceRefresh: true })
+  let history = createBrowserHistory({ forceRefresh: true });
 
   const checkForError = (e) => {
     handleErrors(e, setErrors);
@@ -26,6 +26,8 @@ const Login = () => {
 
     let username = e.target.username.value;
     let password = e.target.password.value;
+
+    console.log(password);
 
     await authenticate(
       RESTAPI.name + "users/login",
@@ -41,8 +43,6 @@ const Login = () => {
       (error) => {
         console.log('Error', error);
       });
-      
-      console.log(context);
   };
 
   return (

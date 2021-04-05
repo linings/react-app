@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import getData from "../../../utils/getData";
 
 const LinkMenu = () => {
-    let [images, setImages] = useState([]);
+    const [images, setImages] = useState([]);
 
     async function getImages() {
         let result = await getData('images');
