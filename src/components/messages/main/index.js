@@ -5,8 +5,7 @@ import editUserInfo from '../../../utils/editUserInfo';
 import { useEffect, useState } from 'react';
 import getCookie from '../../../utils/cookie';
 import unite from './unite';
-import { useHistory } from 'react-router';
-import { get } from 'react-hook-form';
+
 // import getNames from './getNames';
 
 const Main = () => {

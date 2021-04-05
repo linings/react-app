@@ -9,7 +9,7 @@ const post = async (tableName, body) => {
             "Content-Type": "application/json",
         }
     });
-    let response = await promise.json();
+    return await promise.json();
 }
 
 export default post;
