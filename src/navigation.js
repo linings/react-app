@@ -23,9 +23,9 @@ const Navigation = () => {
         //   {loggedIn ? <Redirect to="/" /> : <Register />}
         // </Route>*/}
 
-        {/* <Route path="/adopt">
+        <Route path="/adopt">
           {!loggedIn ? <Redirect to="/login" /> : <Donate />}
-        </Route> */}
+        </Route>
 
         {/* <Route path="/messages">
         //   {!loggedIn ? <Redirect to="/login" /> : <Messages />}
@@ -39,7 +39,7 @@ const Navigation = () => {
         {<Route path="/" exact component={Home} />}
         {<Route path="/login" component={Login} />}
         {<Route path="/register" component={Register} />}
-        {<Route path="/adopt" component={Donate} />}
+        {/* {<Route path="/adopt" component={Donate} />} */}
         {<Route path="/upload" component={Admin} />}
         {<Route path="/messages" component={Messages} />}
       </Switch>

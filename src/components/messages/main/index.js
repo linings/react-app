@@ -5,11 +5,13 @@ import editUserInfo from '../../../utils/editUserInfo';
 import { useEffect, useState } from 'react';
 import getCookie from '../../../utils/cookie';
 import unite from './unite';
+// import getNames from './getNames';
 
 const Main = () => {
     let [initialMessage, setInitialMessage] = useState({});
     let [text, setText] = useState([]);
     let [wrappedMessages, setWrappedMessages] = useState([]);
+    // let [users, setUsers] = useState([]);
 
     const getMessages = async () => {
         let promise = await getUserData(getCookie('x-auth-token'));
@@ -18,8 +20,11 @@ const Main = () => {
         setInitialMessage(messages);
 
         setWrappedMessages(unite(Object.entries(messages)));
-        console.log(Object.entries(initialMessage));
+
+        // let result = await getNames(initialMessage);
+        // setUsers(result);
     }
+
     const handleSubmit = (e) => {
         e.preventDefault();
 

@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
+import { createBrowserHistory } from 'history';
 
 import styles from "./index.module.css";
 import PageLayout from "../../components/page-layout";
@@ -12,7 +13,8 @@ const Login = () => {
   let [errors, setErrors] = useState({ username: "", password: "" });
 
   const context = useContext(UserContext);
-  const history = useHistory();
+  // const history = useHistory();    
+  let history = createBrowserHistory({ forceRefresh: true })
 
   const checkForError = (e) => {
     handleErrors(e, setErrors);
