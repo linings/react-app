@@ -59,11 +59,13 @@ const Messages = () => {
     return (
         <div className={styles.wrapper}>
             <span>
-                <h5 className={styles.name}>Petya Pavlova</h5>
+                <h5 className={styles.name}>Admin</h5>
                 <span className={styles.messages}>
+                    <div className={styles.date}>{Object.keys(messages).length !== 0
+                        ? new Date(messages[messages.length - 1].time).toDateString()
+                        : null}</div>
 
                     {Object.keys(messages).length !== 0 ? messages.map((message, i) => {
-                        <div className={styles.date}>{new Date(messages[messages.length - 1].time).toDateString()}</div>
 
                         return (
                             <div key={i}>

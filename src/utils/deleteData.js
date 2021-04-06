@@ -1,9 +1,9 @@
 import RESTAPI from '../REST API'
 
-const deleteItem = async (id, tableName) => {
+const deleteItem = async (id, tableName, history) => {
   let promise = await fetch(RESTAPI.name + `data/${tableName}/${id}`, {
     method: 'DELETE',
   });
-  return promise;
+  return history ? history.push('/') : promise.json();
 }
 export default deleteItem;

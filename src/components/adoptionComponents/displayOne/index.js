@@ -74,7 +74,7 @@ const DisplayOne = ({ props }) => {
                             {showCard ? <Display props={{ show: showCard, handleClose: handleCloseCard, subject: 'card' }} />
                                 : showForm ? <Display props={{ id: props.show.id, show: showForm, handleClose: handleCloseForm, subject: 'form' }} />
                                     : null}
-                            {localStorage.getItem('isAdmin') === 'true' ? <Button onClick={() => deleteItem(show.id, location.pathname.split('/')[2])} className={styles['delete-button']} variant="danger"> Delete </Button> : null}
+                            {localStorage.getItem('isAdmin') === 'true' ? <Button onClick={() => deleteItem(show.id, location.pathname.split('/')[2], history)} className={styles['delete-button']} variant="danger"> Delete </Button> : null}
                         </Card.Body>
                     </Card>
                 </Modal.Body>
