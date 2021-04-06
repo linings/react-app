@@ -7,7 +7,6 @@ import Register from "./pages/register";
 import Donate from "./components/donateComponents/donate";
 import Admin from "./components/admin/adminPage";
 import Messages from "./components/messages";
-import TryMessages from "./components/messages/main/tryMessage";
 
 const Navigation = () => {
   const loggedIn = localStorage.getItem('username');
@@ -43,7 +42,6 @@ const Navigation = () => {
         {/* {<Route path="/adopt" component={Donate} />} */}
         {<Route path="/upload" component={Admin} />}
         {<Route path="/messages" component={Messages} />}
-        {<Route path="/trymessages" component={TryMessages} />}
       </Switch>
     </BrowserRouter>
   );

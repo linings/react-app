@@ -3,18 +3,14 @@ import getOne from "../../../utils/getOne";
 import Spinner from 'react-bootstrap/Spinner';
 import Button from 'react-bootstrap/Button';
 import styles from './index.module.css';
-import edit from '../../../utils/editUserInfo';
-import { useHistory, useLocation } from "react-router";
-import getUserData from "../../../utils/getUserData";
 import getCookie from "../../../utils/cookie";
+import post from "../../../utils/postData";
+import makeRelationToUser from "../../../utils/makeRelationToUser";
 
 const Details = (props) => {
     const [request, setRequest] = useState({});
     const [requestedAnimal, setRequestedAnimal] = useState({});
-    const  [requesterMessages, setRequesterMessages] = useState({});
-
-    let history = useHistory();
-    const location = useLocation();
+    const [text, setText] = useState("");
 
     const displayCurrentRequest = async () => {
         let result = await getOne('adoptionRequests', props.props.id);
@@ -29,40 +25,33 @@ const Details = (props) => {
         setRequestedAnimal(result);
     }
 
-    const getRequesterMessages = async (id) => {
-        let result = await getUserData(id);
-        return result.messages;
-    }
-
     useEffect(() => {
         displayCurrentRequest();
-    }, [location])
-
-    if (Object.keys(request).length === 0 && Object.keys(requestedAnimal).length === 0) {
-        return <Spinner className={styles.spinner} animation="border" />
-    }
+    }, [])
 
     const sendAnswer = async (e) => {
         e.preventDefault();
 
-        let initialMessage = await getRequesterMessages(request.requesterId);
-
-        console.log(initialMessage);
-
-        let text = e.target.answer.value;
-
         let currentUserNames = localStorage.getItem('names');
-        let newMessage = {};
-        newMessage[new Date()] = text;
 
-        if (!initialMessage.hasOwnProperty(currentUserNames)) {
-            initialMessage[currentUserNames] = [];
-        }
-        initialMessage[currentUserNames].push(newMessage);
+        post('message', {
+            'userNAme': currentUserNames,
+            'message': text,
+            'userId': getCookie('x-auth-token'),
+            time: new Date()
+        }).then(promise => {
 
-        edit( initialMessage, request.requesterId);  // to oposite messages
-        edit(initialMessage , getCookie('x-auth-token'));  // to your messages
-        history.push(`/upload/${location.pathname.split('/')[2]}`);
+            makeRelationToUser(getCookie('x-auth-token'), 'message', promise.objectId);
+            makeRelationToUser(request.requesterId, 'message', promise.objectId);
+
+            setText("");
+        }).catch(err => {
+            console.log(err);
+        });
+    }
+
+    if (Object.keys(request).length === 0 && Object.keys(requestedAnimal).length === 0) {
+        return <Spinner className={styles.spinner} animation="border" />
     }
 
     return (
@@ -89,7 +78,12 @@ const Details = (props) => {
             <div>
                 <h5> Answer to request:</h5>
                 <form onSubmit={(e) => sendAnswer(e)}>
-                    <input className={styles.answer} name="answer" placeholder="Answer here..." />
+                    <input
+                        className={styles.answer}
+                        name="text"
+                        placeholder="Answer here..."
+                        value={text}
+                        onChange={(e) => setText(e.target.value)} />
                     <Button type="submit" className={styles.send} variant="outline-dark">Send</Button>
                 </form>
             </div>

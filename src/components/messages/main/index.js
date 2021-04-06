@@ -1,68 +1,68 @@
 import Button from 'react-bootstrap/Button';
 import styles from './index.module.css';
-import getUserData from '../../../utils/getUserData';
 import editUserInfo from '../../../utils/editUserInfo';
 import { useEffect, useState } from 'react';
 import getCookie from '../../../utils/cookie';
 import unite from './unite';
+import post from '../../../utils/postData';
+import makeRelationToUser from '../../../utils/makeRelationToUser';
+import getData from '../../../utils/getData';
 
-// import getNames from './getNames';
-
-const Main = () => {
-    const [initialMessage, setInitialMessage] = useState({});
+const Messages = () => {
+    const [messages, setMessages] = useState({});
     const [text, setText] = useState([]);
-    const [wrappedMessages, setWrappedMessages] = useState([]);
-    // const [users, setUsers] = useState([]);
+    const [messageId, setMessageId] = useState('');
 
     const getMessages = async () => {
-        let promise = await getUserData(getCookie('x-auth-token'));
-        let messages = promise.messages;
+        let promise = await getData('message');
 
-        setInitialMessage(messages);
-
-        setWrappedMessages(unite(Object.entries(messages)));
-
-        // let result = await getNames(initialMessage);
-        // setUsers(result);
+        let sortedMessages = promise.sort((a, b) => a.time - b.time);
+        setMessages(sortedMessages);
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         let currentUserNames = localStorage.getItem('names');
-        let newMessage = {};
-        newMessage[new Date()] = text;
 
-        if (!initialMessage.hasOwnProperty(currentUserNames)) {
-            initialMessage[currentUserNames] = [];
-        }
-        initialMessage[currentUserNames].push(newMessage);
+        post('message', {
+            'userNAme': currentUserNames,
+            'message': text,
+            'userId': getCookie('x-auth-token'),
+            time: new Date()
+        }).then(promise => {
 
-        editUserInfo(initialMessage, getCookie('x-auth-token'))
-            .then((result) => {
-                setInitialMessage(result.messages);
-            });
-        // editUserInfo(initialMessage, getCookie('x-auth-token')); // Save comment on other user!
-        setText("");
+            makeRelationToUser(getCookie('x-auth-token'), 'message', promise.objectId);
+
+            setMessageId(promise.objectId);
+            setText("");
+        }).catch(err => {
+            console.log(err);
+        });
+
     }
     useEffect(() => {
         getMessages();
-    }, [initialMessage])
+    }, [messageId])
+
     return (
         <div className={styles.wrapper}>
-            {wrappedMessages.length !== 0 ? <span>
-                <h5 className={styles.name}>Petya Pavlova</h5>
+            {Object.keys(messages).length !== 0 ? <span>
+                <h5 className={styles.name}>Messages</h5>
                 <span className={styles.messages}>
-                    {wrappedMessages.map((message, i) => {
+
+                    {messages.map((message, i) => {
+
                         return (
                             <div key={i}>
-                                <div className={styles['message-time']}>{Object.entries(Object.entries(message)[0][1])[0][0].split('G')[0]}</div>
+                                <div className={styles['message-time']}>{message.time}</div>
                                 <div className={styles['single-message']}>
-                                    {Object.entries(message)[0][0]}: {Object.entries(Object.entries(message)[0][1])[0][1]}
+                                    {message.userName}: {message.message}
                                 </div>
                             </div>
                         )
                     })}
+
                 </span>
                 <span>
                     <form onSubmit={(e) => handleSubmit(e)}>
@@ -81,4 +81,4 @@ const Main = () => {
         </div>
     )
 }
-export default Main;
+export default Messages;
