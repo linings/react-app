@@ -3,7 +3,6 @@ import styles from './index.module.css';
 import editUserInfo from '../../../utils/editUserInfo';
 import { useEffect, useState } from 'react';
 import getCookie from '../../../utils/cookie';
-import unite from './unite';
 import post from '../../../utils/postData';
 import makeRelationToUser from '../../../utils/makeRelationToUser';
 import getData from '../../../utils/getData';
@@ -12,12 +11,21 @@ const Messages = () => {
     const [messages, setMessages] = useState({});
     const [text, setText] = useState([]);
     const [messageId, setMessageId] = useState('');
+    const [companionId, setCompanionId] = useState('');
 
     const getMessages = async () => {
         let promise = await getData('message');
-
         let sortedMessages = promise.sort((a, b) => a.time - b.time);
+
         setMessages(sortedMessages);
+
+        if (Object.keys(messages).length !== 0) {
+            const companion = messages.find(m => m.userName !== localStorage.getItem('names'));
+
+            if (companion) {
+                setCompanionId(companion.userId);
+            }
+        }
     }
 
     const handleSubmit = async (e) => {
@@ -31,8 +39,11 @@ const Messages = () => {
             'userId': getCookie('x-auth-token'),
             time: new Date()
         }).then(promise => {
-
             makeRelationToUser(getCookie('x-auth-token'), 'message', promise.objectId);
+
+            if (companionId) {
+                makeRelationToUser(companionId, 'message', promise.objectId);
+            }
 
             setMessageId(promise.objectId);
             setText("");
@@ -47,21 +58,23 @@ const Messages = () => {
 
     return (
         <div className={styles.wrapper}>
-            {Object.keys(messages).length !== 0 ? <span>
-                <h5 className={styles.name}>Messages</h5>
+            <span>
+                <h5 className={styles.name}>Petya Pavlova</h5>
                 <span className={styles.messages}>
 
-                    {messages.map((message, i) => {
+                    {Object.keys(messages).length !== 0 ? messages.map((message, i) => {
+                        <div className={styles.date}>{new Date(messages[messages.length - 1].time).toDateString()}</div>
 
                         return (
                             <div key={i}>
-                                <div className={styles['message-time']}>{message.time}</div>
+                                <div className={message.userId === getCookie('x-auth-token') ? styles['message-time-right'] : styles['message-time-left']}>{new Date(message.time).toLocaleTimeString()}</div>
                                 <div className={styles['single-message']}>
-                                    {message.userName}: {message.message}
+                                    <span className={message.userId === getCookie('x-auth-token') ? styles['message-name-right'] : styles['message-name-left']}>
+                                        {message.message}  </span>
                                 </div>
                             </div>
                         )
-                    })}
+                    }) : <div className={styles['no-messages']}>You don`t have any massages yet! :(</div>}
 
                 </span>
                 <span>
@@ -77,7 +90,6 @@ const Messages = () => {
                     </form>
                 </span>
             </span>
-                : <div className={styles['no-messages']}>You don`t have any massages yet! :(</div>}
         </div>
     )
 }
