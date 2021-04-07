@@ -12,7 +12,7 @@ const Admin = () => {
     const tableName = location.pathname.split('/')[2];
 
     const [name, setName] = useState('');
-    let [age, setAge] = useState('');
+    const [age, setAge] = useState('');
     const [breed, setBreed] = useState('');
     const [sex, setSex] = useState('');
     const [story, setStory] = useState('');
@@ -21,15 +21,11 @@ const Admin = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        if (age) {
-            age = Number(age)
-        }
-
         tableName === 'stories'
             ? post(tableName, { name, story, url })
             : post(tableName, { name, age, breed, sex, story, url });
 
-        // history.push('/upload');
+        history.push(`/adopt`);
     }
 
     return (
@@ -102,7 +98,7 @@ const Admin = () => {
                                             name="age"
                                             placeholder="Age"
                                             value={age}
-                                            onChange={(e) => setAge(e.target.value)}
+                                            onChange={(e) => setAge(Number(e.target.value))}
                                         ></input>
                                         <input
                                             type="text"

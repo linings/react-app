@@ -4,6 +4,6 @@ const deleteItem = async (id, tableName, history) => {
   let promise = await fetch(RESTAPI.name + `data/${tableName}/${id}`, {
     method: 'DELETE',
   });
-  return history ? history.push('/') : promise.json();
+  return history ? history.push('/adopt') : promise.json();
 }
 export default deleteItem;
