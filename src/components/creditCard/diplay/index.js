@@ -7,6 +7,7 @@ import { useHistory } from 'react-router';
 
 
 const Display = ({ props }) => {
+    const history = useHistory();
 
     return (
         <Modal
@@ -26,7 +27,7 @@ const Display = ({ props }) => {
             </Modal.Body>
             <Modal.Footer>
                 {props.subject === 'card' ?
-                    <Button href={'/'} variant="outline-info" >
+                    <Button onClick={() => history.push('/')} variant="outline-info" >
                         Donate
                     </Button>
                     : null}

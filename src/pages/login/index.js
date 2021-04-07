@@ -1,6 +1,4 @@
 import React, { useState, useContext } from "react";
-import { useHistory } from "react-router-dom";
-import { createBrowserHistory } from 'history';
 
 import styles from "./index.module.css";
 import PageLayout from "../../components/page-layout";
@@ -8,13 +6,13 @@ import UserContext from "../../context";
 import authenticate from "../../utils/authenticate";
 import RESTAPI from "../../REST API";
 import handleErrors from "../../utils/errors";
+import AlertComponent from "../../components/alert";
 
-const Login = () => {
+const Login = ({ history }) => {
   const [errors, setErrors] = useState({ username: "", password: "" });
+  const [alert, setAlert] = useState('');
 
   const context = useContext(UserContext);
-  // const history = useHistory();    
-  let history = createBrowserHistory({ forceRefresh: true });
 
   const checkForError = (e) => {
     handleErrors(e, setErrors);
@@ -22,12 +20,10 @@ const Login = () => {
 
 
   const handleSubmit = async (e) => {
-    e.preventDefault(); 
+    e.preventDefault();
 
     let username = e.target.username.value;
     let password = e.target.password.value;
-
-    console.log(password);
 
     await authenticate(
       RESTAPI.name + "users/login",
@@ -42,6 +38,9 @@ const Login = () => {
       },
       (error) => {
         console.log('Error', error);
+        if (error) {
+          setAlert('Invalid username or password!')
+        }
       });
   };
 
@@ -49,6 +48,7 @@ const Login = () => {
     <div>
       <PageLayout />
       <div className={styles.container}>
+        {alert ? <AlertComponent text={alert} /> : null}
         <div className={styles.row}>
           <div className={styles["col-md-6"]}>
             <div className={styles.card}>

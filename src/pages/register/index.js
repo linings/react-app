@@ -1,6 +1,4 @@
 import React, { useContext, useState } from "react";
-import { createBrowserHistory } from 'history';
-// import { useHistory } from "react-router-dom";
 
 import styles from "./index.module.css";
 import PageLayout from "../../components/page-layout";
@@ -8,21 +6,19 @@ import UserContext from "../../context";
 import authenticate from "../../utils/authenticate";
 import RESTAPI from "../../REST API";
 import handleErrors from "../../utils/errors";
+import AlertComponent from "../../components/alert";
 
-const Register = ({history}) => {
+
+const Register = ({ history }) => {
   const [errors, setErrors] = useState({ username: "", password: "", repeatPassword: "" });
+  const [alert, setAlert] = useState('');
 
   const context = useContext(UserContext);
-  // const history = useHistory();
-  // let history = createBrowserHistory({ forceRefresh: true });
-
-  console.log(history);
 
   const checkForError = (e) => {
     handleErrors(e, setErrors);
     console.log(errors);
   }
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -45,13 +41,16 @@ const Register = ({history}) => {
       },
       (error) => {
         console.log('Error', error);
+        setAlert(error);
       });
   };
+
 
   return (
     <div>
       <PageLayout />
       <div className={styles.container}>
+        {alert ? <AlertComponent text={alert} /> : null}
         <div className={styles.row}>
           <div className={styles["col-md-6"]}>
             <div className={styles.card}>

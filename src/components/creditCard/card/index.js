@@ -13,7 +13,6 @@ export default class PaymentForm extends React.Component {
         error: ''
     };
 
-
     handleInputFocus = (e) => {
         this.setState({ focus: e.target.name });
     }
@@ -141,7 +140,6 @@ export default class PaymentForm extends React.Component {
                         onBlur={this.checkForError}
                         onFocus={this.handleInputFocus}
                     />
-                    {console.log(this.state.error)}
                     {this.state.error ? <div style={{ color: "red" }}>{this.state.error}</div> : null}
                 </form>
             </div>

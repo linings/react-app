@@ -3,6 +3,14 @@
 const authenticate = async (url, body, onSuccess, onFailure) => {
   const { name, username, password, repeatPassword } = body;
 
+  if (!username.includes('@')) {
+    onFailure(`Username must be an email!`);
+    return `Username must be an email!`;
+  }
+  if (name === '') {
+    onFailure(`You must add First and Last name`);
+    return `You must add First and Last name!`;
+  }
   if (repeatPassword) {
     if (password !== repeatPassword) {
       console.log(`Passwords do not match!`);
