@@ -66,7 +66,6 @@ const Messages = () => {
                         : null}</div>
 
                     {Object.keys(messages).length !== 0 ? messages.map((message, i) => {
-
                         return (
                             <div key={i}>
                                 <div className={message.userId === getCookie('x-auth-token') ? styles['message-time-right'] : styles['message-time-left']}>{new Date(message.time).toLocaleTimeString()}</div>

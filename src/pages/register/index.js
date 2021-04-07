@@ -9,13 +9,14 @@ import authenticate from "../../utils/authenticate";
 import RESTAPI from "../../REST API";
 import handleErrors from "../../utils/errors";
 
-const Register = () => {
+const Register = ({history}) => {
   const [errors, setErrors] = useState({ username: "", password: "", repeatPassword: "" });
 
   const context = useContext(UserContext);
   // const history = useHistory();
-  let history = createBrowserHistory({ forceRefresh: true });
+  // let history = createBrowserHistory({ forceRefresh: true });
 
+  console.log(history);
 
   const checkForError = (e) => {
     handleErrors(e, setErrors);
