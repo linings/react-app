@@ -1,20 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 import styles from "./index.module.css";
 import { Link } from "react-router-dom";
-import getData from "../../../utils/getData";
+import useFetch from "../../../hooks/useFetch";
 
 const LinkMenu = () => {
-    const [images, setImages] = useState([]);
-
-    async function getImages() {
-        let result = await getData('images');
-        setImages(result);
-    }
-
-    useEffect(() => {
-        getImages()
-    }, []);
+    const images = useFetch('images');
 
     return (
         <div className={styles["wrapper"]}>

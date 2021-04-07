@@ -1,28 +1,17 @@
-import { useEffect, useRef, useState } from 'react'
+import { useState } from 'react'
 import { Link } from 'react-router-dom';
-import RESTAPI from '../../REST API';
-import getData from '../../utils/getData';
+import useFetch from '../../hooks/useFetch';
 import DisplayOne from '../adoptionComponents/displayOne';
 import styles from './index.module.css';
 
 const Grid = ({ path }) => {
     const [show, setShow] = useState({ status: false, id: null });
-    const  [subjects, setSubjects] = useState([]);
+    const subjects = useFetch(path.split('/')[1], path);
 
     const handleClose = () => setShow(false);
     const handleShow = (id) => {
         setShow({ status: true, id });
     }
-
-    const getCats = async () => {
-        let result = await getData(path.split('/')[1])
-
-        setSubjects(result);
-    }
-
-    useEffect(() => {
-        getCats();
-    }, [path]);
 
     return (
         <div className={styles.wrapper}   >

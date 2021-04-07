@@ -1,24 +1,23 @@
 import Button from 'react-bootstrap/Button';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Table from 'react-bootstrap/Table';
 import { useLocation } from 'react-router';
-import getData from '../../../utils/getData';
 import styles from './index.module.css';
 import Display from '../../creditCard/diplay';
 import deleteItem from '../../../utils/deleteData';
 import { useHistory } from "react-router";
-
-
+import useFetch from '../../../hooks/useFetch';
 
 
 const AdoptionRequestsList = () => {
-    const [requests, setRequests] = useState([]);
     const [showCard, setShowCard] = useState({ id: '', show: false });
+    const result = useFetch('adoptionRequests');
 
     const location = useLocation();
-    let history = useHistory();
+    const history = useHistory();
 
-    let typeAnimal = location.pathname.split('/')[2];
+    const typeAnimal = location.pathname.split('/')[2];
+    const requests = result.filter(a => a.typePet === typeAnimal);
 
     const handleCloseCard = () => setShowCard(false);
     const handleShowCard = (e) => {
@@ -28,20 +27,9 @@ const AdoptionRequestsList = () => {
     const deleteCard = (e) => {
         let id = e.target.parentNode.parentNode.id;
         deleteItem(id, 'adoptionRequests').then(() => {
-            getRequests();
+            history.push('/upload');
         });
-        // history.push(`/upload/${location.pathname.split('/')[2]}`);
     }
-    const getRequests = async () => {
-        let requests = await getData('adoptionRequests');
-        let animals = requests.filter(a => a.typePet === typeAnimal);
-
-        setRequests(animals);
-    }
-
-    useEffect(() => {
-        getRequests();
-    }, [])
 
     return (
         <>
@@ -85,8 +73,7 @@ const AdoptionRequestsList = () => {
                         })}
                     </tbody>
                 </Table>
-                :
-                <h2 className={styles['no-requests']}>NO REQUESTS :(</h2>
+                : <h2 className={styles['no-requests']}>NO REQUESTS :(</h2>
             }
         </>
     )
