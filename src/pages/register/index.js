@@ -25,10 +25,10 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    let name = e.target.name.value;
-    let username = e.target.username.value;
-    let password = e.target.password.value;
-    let repeatPassword = e.target.repeatPassword.value;
+    const name = e.target.name.value;
+    const username = e.target.username.value;
+    const password = e.target.password.value;
+    const repeatPassword = e.target.repeatPassword.value;
 
     authenticate(RESTAPI.name + "data/Users", {
       name,

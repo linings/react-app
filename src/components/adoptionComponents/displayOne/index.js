@@ -56,15 +56,15 @@ const DisplayOne = ({ props }) => {
                         <Card.Body>
                             <ListGroup horizontal className={styles.horizontal}>
                                 <ListGroup.Item className={styles['icon']} >
-                                    <div><img className={styles['icon-image']} src={paws} /></div>
+                                    <div><img alt="icon" className={styles['icon-image']} src={paws} /></div>
                                     <span className={styles['icon-text']}>{currentSubject.breed}</span>
                                 </ListGroup.Item>
                                 <ListGroup.Item className={styles['icon']} >
-                                    <div><img className={styles['icon-image']} src={weddingCake} /></div>
+                                    <div><img alt="icon" className={styles['icon-image']} src={weddingCake} /></div>
                                     <span className={styles['icon-text']}>{currentSubject.age} Years</span>
                                 </ListGroup.Item>
                                 <ListGroup.Item className={styles['icon']} >
-                                    <div><img className={styles['icon-image']} src={sex} /></div>
+                                    <div><img alt="icon" className={styles['icon-image']} src={sex} /></div>
                                     <span className={styles['icon-text']}>{currentSubject.sex}</span>
                                 </ListGroup.Item>
                             </ListGroup>

@@ -1,11 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 import styles from "./index.module.css";
 import LinkComponent from "../link";
 import getNavigation from "../../utils/navigation";
 import Profile from "../profile";
-import getUserData from '../../utils/getUserData'
-import getCookie from "../../utils/cookie";
 
 const Header = () => {
   const isAdmin = localStorage.getItem('isAdmin');
@@ -17,7 +15,7 @@ const Header = () => {
       {links.map((navElement) => {
         return (
           <LinkComponent
-            style={'header-link'}
+            style='header-link'
             image={navElement.image}
             key={navElement.title}
             title={navElement.title}

@@ -11,7 +11,7 @@ const LinkMenu = () => {
         <div className={styles["wrapper"]}>
             {images.map((image) => {
                 return <Link to={image.href} key={image.objectId} className={styles.petMenu}>
-                    <img className={styles.petImage} src={image.url} />
+                    <img alt="pet" className={styles.petImage} src={image.url} />
                     <div className={styles.petText}>{image.text} </div>
                 </Link>
             }

@@ -20,7 +20,7 @@ const Grid = ({ path }) => {
                     to={path.split('/')[1]}
                     key={subject.objectId} className={styles.petMenu}
                     onClick={() => handleShow(subject.objectId)}>
-                    <img className={styles.petImage} src={subject.url} />
+                    <img alt="pet" className={styles.petImage} src={subject.url} />
                     <div className={styles['subject-details']}>
                         <div className={styles.name}>{subject.name} </div>
                         <div className={styles.sex}>{subject.sex}, </div>

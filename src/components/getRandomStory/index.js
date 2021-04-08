@@ -14,7 +14,7 @@ const GetRandomStory = () => {
         <div>
             {story ?
                 <div>
-                    <img className={styles['random-story']} src={story.url}></img>
+                    <img alt='story' className={styles['random-story']} src={story.url}></img>
                     <span className={styles['random-story-text']}>
                         <div>{story.story}</div>
                         <div className={styles['name-of-pet']}>-{story.name}</div>

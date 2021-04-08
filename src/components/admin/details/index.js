@@ -77,7 +77,7 @@ const Details = (props) => {
                 <h5 className={styles.last}>Requested animal:</h5>
                 <div>name: <b>{requestedAnimal.name}</b></div>
                 <div>age: <b>{requestedAnimal.age} years</b></div>
-                <img className={styles.request} src={requestedAnimal.url}></img>
+                <img alt="request" className={styles.request} src={requestedAnimal.url}></img>
             </div>
             <div>
                 <h5> Answer to request:</h5>

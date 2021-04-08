@@ -1,6 +1,5 @@
 import Button from 'react-bootstrap/Button';
 import styles from './index.module.css';
-import editUserInfo from '../../../utils/editUserInfo';
 import { useEffect, useState } from 'react';
 import getCookie from '../../../utils/cookie';
 import post from '../../../utils/postData';
@@ -8,8 +7,8 @@ import makeRelationToUser from '../../../utils/makeRelationToUser';
 import getData from '../../../utils/getData';
 
 const Messages = () => {
-    const [messages, setMessages] = useState({});
-    const [text, setText] = useState([]);
+    const [messages, setMessages] = useState([]);
+    const [text, setText] = useState('');
     const [messageId, setMessageId] = useState('');
     const [companionId, setCompanionId] = useState('');
 

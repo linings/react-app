@@ -1,15 +1,14 @@
 import { useEffect, useState } from "react";
-import authenticate from "./utils/authenticate";
-import RESTAPI from "./REST API";
+// import authenticate from "./utils/authenticate";
+// import RESTAPI from "./REST API";
 import getCookie from "./utils/cookie";
 import UserContext from "./context";
-import context from './context.js'
+// import context from './context.js'
 
 const Auth = (props) => {
     const [user, setUser] = useState(null);
 
     const logIn = () => {
-        console.log(user);
         setUser({
             ...user,
             loggedIn: true,
@@ -39,20 +38,20 @@ const Auth = (props) => {
             return;
         }
 
-        authenticate(
-            RESTAPI.name + 'users/login',
-            {
-                username: localStorage.getItem('username'),
-                password: localStorage.getItem('password')
-            },
-            (user) => {
-                context.user = user;
-            },
-            (error) => {
-                console.log('Error', error);
-            }
-        );
-        setUser(user);
+        // authenticate(
+        //     RESTAPI.name + 'users/login',
+        //     {
+        //         username: localStorage.getItem('username'),
+        //         password: localStorage.getItem('password')
+        //     },
+        //     (user) => {
+        //         context.user = user;
+        //     },
+        //     (error) => {
+        //         console.log('Error', error);
+        //     }
+        // );
+        // setUser(user);
     }, []);
 
     return (

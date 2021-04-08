@@ -7,13 +7,13 @@ import reportWebVitals from "./reportWebVitals";
 import Auth from "./Auth";
 
 ReactDOM.render(
-  <Auth>
-    <React.StrictMode>
+  <React.StrictMode>
+    <Auth>
       <Navigation>
         <App />
       </Navigation>
-    </React.StrictMode>
-  </Auth>,
+    </Auth>
+  </React.StrictMode>,
   document.getElementById("root")
 );
 

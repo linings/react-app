@@ -25,7 +25,6 @@ const AdoptionForm = ({ id }) => {
             name,
             permission,
             currently,
-            currently,
             description,
             email: localStorage.getItem('username'),
             requesterId: getCookie('x-auth-token'),

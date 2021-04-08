@@ -41,7 +41,7 @@ const Login = () => {
       (error) => {
         console.log('Error', error);
         if (error) {
-          setAlert('Invalid username or password!')
+          setAlert('Invalid username or password!');
         }
       });
   };

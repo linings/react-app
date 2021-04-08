@@ -1,6 +1,5 @@
 import styles from './index.module.css'
 import paw from '../../../public/paw.svg'
-import { Link } from 'react-router-dom';
 import Display from '../../creditCard/diplay';
 import { useState } from 'react';
 
@@ -32,7 +31,7 @@ const Difference = () => {
          <div className={styles.text}>Lifesaving surgery</div>
       </div>
       <div className={styles.donate2}>
-         <img className={styles.paw} src={paw}></img>
+         <img alt='paw' className={styles.paw} src={paw}></img>
          <button onClick={handleShowCard} className={styles.text}>Donate Now</button>
          {showCard && <Display props={{ subject: 'card', show: showCard, handleClose: handleCloseCard }} />}
       </div>
