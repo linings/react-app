@@ -6,14 +6,16 @@ import UserContext from "../../context";
 import authenticate from "../../utils/authenticate";
 import RESTAPI from "../../REST API";
 import handleErrors from "../../utils/errors";
+import { createBrowserHistory } from 'history';
 import AlertComponent from "../../components/alert";
 
 
-const Register = ({ history }) => {
+const Register = () => {
   const [errors, setErrors] = useState({ username: "", password: "", repeatPassword: "" });
   const [alert, setAlert] = useState('');
 
   const context = useContext(UserContext);
+  let history = createBrowserHistory({ forceRefresh: true })
 
   const checkForError = (e) => {
     handleErrors(e, setErrors);

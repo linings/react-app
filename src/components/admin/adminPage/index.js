@@ -4,7 +4,8 @@ import { useHistory, useLocation } from 'react-router';
 import { useState } from 'react';
 import post from '../../../utils/postData';
 import AdoptionRequestsList from '../adoptionRequests';
-import GetRandomStory from '../../getRandomStory'
+import GetRandomStory from '../../getRandomStory';
+import AlertComponent from '../../alert';
 
 const Admin = () => {
     const location = useLocation();
@@ -18,8 +19,21 @@ const Admin = () => {
     const [story, setStory] = useState('');
     const [url, setUrl] = useState('');
 
+    const [alert, setAlert] = useState('');
+
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        if (tableName !== 'stories') {
+            if (name === '' || age === '' || breed === '' || sex === '' || story === '' || url === '') {
+                return setAlert('All fields must be filled!');
+            }
+        } else {
+            if (name === '' || story === '' || url === '') {
+                console.log('hre');
+                return setAlert('All fields must be filled!');
+            }
+        }
 
         tableName === 'stories'
             ? post(tableName, { name, story, url })
@@ -33,6 +47,8 @@ const Admin = () => {
             <PageLayout />
             {tableName === 'stories' ?
                 <>
+                {console.log(alert)}
+                    {alert ? null : <AlertComponent text={alert} />}
                     <div className={styles.container}>
                         <div className={styles.row}>
                             <div className={styles["col-md-6"]}>
@@ -79,6 +95,7 @@ const Admin = () => {
                 :
                 <>
                     <div className={styles.container}>
+                        {alert ? <AlertComponent text={alert} /> : null}
                         <div className={styles.row}>
                             <div className={styles["col-md-6"]}>
                                 <div className={styles.card}>

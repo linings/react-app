@@ -31,6 +31,10 @@ const Messages = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        if(text === ''){
+            return;
+        }
+
         let currentUserNames = localStorage.getItem('names');
 
         post('message', {

@@ -5,13 +5,15 @@ import PageLayout from "../../components/page-layout";
 import UserContext from "../../context";
 import authenticate from "../../utils/authenticate";
 import RESTAPI from "../../REST API";
+import { createBrowserHistory } from 'history';
 import handleErrors from "../../utils/errors";
 import AlertComponent from "../../components/alert";
 
-const Login = ({ history }) => {
+const Login = () => {
   const [errors, setErrors] = useState({ username: "", password: "" });
   const [alert, setAlert] = useState('');
 
+  let history = createBrowserHistory({ forceRefresh: true })
   const context = useContext(UserContext);
 
   const checkForError = (e) => {

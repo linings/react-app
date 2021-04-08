@@ -32,6 +32,10 @@ const Details = (props) => {
     const sendAnswer = async (e) => {
         e.preventDefault();
 
+        if (text === '') {
+            return;
+        }
+
         let currentUserNames = localStorage.getItem('names');
 
         post('message', {

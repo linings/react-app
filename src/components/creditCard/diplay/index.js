@@ -4,6 +4,7 @@ import PaymentForm from '../card';
 import AdoptionForm from '../../adoptionComponents/adoptionForm';
 import Details from '../../admin/details';
 import { useHistory } from 'react-router';
+import { useEffect, useState } from 'react';
 
 
 const Display = ({ props }) => {

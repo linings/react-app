@@ -10,9 +10,8 @@ export default class PaymentForm extends React.Component {
         focus: '',
         name: '',
         number: '',
-        error: ''
+        error: '',
     };
-
     handleInputFocus = (e) => {
         this.setState({ focus: e.target.name });
     }
@@ -75,6 +74,7 @@ export default class PaymentForm extends React.Component {
     render() {
         return (
             <div id="PaymentForm" className={styles['payment-form']}>
+
                 <Cards
                     cvc={this.state.cvc}
                     expiry={this.state.expiry}

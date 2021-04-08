@@ -4,6 +4,7 @@ import Form from 'react-bootstrap/Form';
 import { useHistory, useLocation } from 'react-router';
 import getCookie from '../../../utils/cookie';
 import post from '../../../utils/postData';
+import AlertComponent from '../../alert';
 
 const AdoptionForm = ({ id }) => {
     const [name, setName] = useState('');
@@ -11,10 +12,15 @@ const AdoptionForm = ({ id }) => {
     const [currently, setCurrently] = useState('');
     const [description, setDescription] = useState('');
 
+    const [alert, setAlert] = useState('');
+
     const history = useHistory();
     const location = useLocation();
 
     const onSubmit = () => {
+        if (name === '' || permission === '' || currently === '' || description === '') {
+            return setAlert(`All Fields must be filled!`);
+        }
         post('adoptionRequests', {
             name,
             permission,
@@ -32,6 +38,7 @@ const AdoptionForm = ({ id }) => {
     return (
         <>
             <Form >
+                {alert ? <AlertComponent text={alert} /> : null}
                 <Form.Group controlId="exampleForm.ControlInput1">
                     <Form.Label>Names</Form.Label>
                     <Form.Control
