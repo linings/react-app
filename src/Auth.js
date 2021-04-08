@@ -9,7 +9,6 @@ const Auth = (props) => {
     const [user, setUser] = useState(null);
 
     const logIn = () => {
-        console.log(user);
         setUser({
             ...user,
             loggedIn: true,

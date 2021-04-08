@@ -5,8 +5,6 @@ import GetRandomStory from "../../components/getRandomStory";
 import LinkMenu from '../../components/homeComponents/home-menu';
 import Information from "../../components/homeComponents/information";
 import getCookie from '../../utils/cookie'
-import styles from './index.module.css'
-import dog from '../../public/doggy.png'
 
 const HomePage = () => {
 

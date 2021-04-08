@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import Home from "./components/homeComponents/home";
@@ -10,7 +10,7 @@ import Messages from "./components/messages";
 
 const Navigation = () => {
   const loggedIn = localStorage.getItem('username');
-  const isAdmin = localStorage.getItem('isAdmin');
+  // const isAdmin = localStorage.getItem('isAdmin');
 
   return (
     <BrowserRouter>

@@ -1,6 +1,5 @@
 import Button from 'react-bootstrap/Button';
 import styles from './index.module.css';
-import editUserInfo from '../../../utils/editUserInfo';
 import { useEffect, useState } from 'react';
 import getCookie from '../../../utils/cookie';
 import post from '../../../utils/postData';

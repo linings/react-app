@@ -8,11 +8,11 @@ const Choose = () => {
         <div>
         <div className={styles['pet-wrapper']}>
             <span className={styles['cat-image']}>
-                <img src={'https://thumbs.dreamstime.com/b/cute-cat-white-background-lovely-pet-cute-cat-white-background-124435681.jpg'} />
+                <img alt="cat" src={'https://thumbs.dreamstime.com/b/cute-cat-white-background-lovely-pet-cute-cat-white-background-124435681.jpg'} />
                 <Link to={'/adopt/cats'}>Cats</Link>
             </span>
             <span className={styles['dog-image']} >
-                <img src={'https://photosfine.files.wordpress.com/2012/04/white-dog-white-background-3.jpg'} />
+                <img alt="dog" src={'https://photosfine.files.wordpress.com/2012/04/white-dog-white-background-3.jpg'} />
                 <Link to={'/adopt/dogs'}>Dogs</Link>
             </span>
         </div>

@@ -1,5 +1,3 @@
-import React, { useContext } from "react";
-
 import iconDog from "../public/icon-dog.png";
 import iconHorse from "../public/icon-horse.png";
 import iconGiraffe from "../public/icon-giraffe.png";

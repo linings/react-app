@@ -30,7 +30,6 @@ const Admin = () => {
             }
         } else {
             if (name === '' || story === '' || url === '') {
-                console.log('hre');
                 return setAlert('All fields must be filled!');
             }
         }
@@ -47,7 +46,6 @@ const Admin = () => {
             <PageLayout />
             {tableName === 'stories' ?
                 <>
-                {console.log(alert)}
                     {alert ? null : <AlertComponent text={alert} />}
                     <div className={styles.container}>
                         <div className={styles.row}>
