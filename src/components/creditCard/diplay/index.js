@@ -3,15 +3,9 @@ import Button from 'react-bootstrap/Button';
 import PaymentForm from '../card';
 import AdoptionForm from '../../adoptionComponents/adoptionForm';
 import Details from '../../admin/details';
-import { useState } from 'react';
-
+import { useEffect, useState } from 'react';
 const Display = ({ props }) => {
-    const [clicked, setClicked] = useState(false);
-
-    const handleClickDonate = () => {
-        setClicked(true);
-    }
-
+    const history = useHistory();
     return (
         <Modal
             animation={false}
@@ -23,14 +17,14 @@ const Display = ({ props }) => {
         >
 
             <Modal.Body>
-                {props.subject === 'card' ? <PaymentForm clicked={clicked} />
+                {props.subject === 'card' ? <PaymentForm />
                     : props.subject === 'form' ? <AdoptionForm id={props.id} />
                         : props.subject === 'requestDetails' ? <Details props={props} />
                             : null}
             </Modal.Body>
             <Modal.Footer>
                 {props.subject === 'card' ?
-                    <Button onClick={handleClickDonate} variant="outline-info" >
+                    <Button onClick={() => history.push('/')} variant="outline-info" >
                         Donate
                     </Button>
                     : null}

@@ -1,5 +1,4 @@
-import React, { useEffect } from "react";
-
+import React, { useContext } from "react";
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import Home from "./components/homeComponents/home";
 import Login from "./pages/login";
@@ -10,7 +9,6 @@ import Messages from "./components/messages";
 import UserContext from './context';
 
 const Navigation = () => {
-  // const isAdmin = localStorage.getItem('isAdmin');
 
   return (
     <UserContext.Consumer>
