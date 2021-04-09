@@ -5,21 +5,20 @@ import PageLayout from "../../components/page-layout";
 import UserContext from "../../context";
 import authenticate from "../../utils/authenticate";
 import RESTAPI from "../../REST API";
-import { createBrowserHistory } from 'history';
 import handleErrors from "../../utils/errors";
 import AlertComponent from "../../components/alert";
+import { useHistory } from "react-router";
 
 const Login = () => {
   const [errors, setErrors] = useState({ username: "", password: "" });
   const [alert, setAlert] = useState('');
 
-  let history = createBrowserHistory({ forceRefresh: true })
   const context = useContext(UserContext);
+  const history = useHistory();
 
   const checkForError = (e) => {
     handleErrors(e, setErrors);
   }
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -34,9 +33,10 @@ const Login = () => {
         password,
       },
       (user) => {
+        context.logIn();
         context.user = user;
         context.user.loggedIn = true;
-        history.push("/");
+        history.push('/');
       },
       (error) => {
         console.log('Error', error);

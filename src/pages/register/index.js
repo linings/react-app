@@ -39,6 +39,7 @@ const Register = () => {
       (user) => {
         context.user = user;
         context.user.loggedIn = true;
+        context.logIn();
         history.push("/");
       },
       (error) => {

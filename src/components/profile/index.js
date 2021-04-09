@@ -3,12 +3,11 @@ import React, { useContext } from 'react';
 import { createBrowserHistory } from 'history';
 import UserContext from '../../context';
 import styles from './index.module.css'
+import { useHistory } from 'react-router';
 
 const Profile = () => {
     const context = useContext(UserContext);
-    let history = createBrowserHistory({ forceRefresh: true })
-    // let history = useHistory();
-
+    let history = useHistory();
 
     return (
         <div className={styles['profile-wrapper']}>
