@@ -1,7 +1,7 @@
 import Header from "../../header";
 import Main from "../main";
 
-const Donate = () => {
+const Donate = () => { // ADOPT
     return (
         <div>
             <Header />

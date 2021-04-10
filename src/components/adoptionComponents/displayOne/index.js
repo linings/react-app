@@ -16,6 +16,8 @@ const DisplayOne = ({ props }) => {
     const [showCard, setShowCard] = useState(false);
     const [showForm, setShowForm] = useState(false);
 
+    const { show, handleClose, subjects } = props;
+
     const location = useLocation();
     const history = useHistory();
 
@@ -31,9 +33,6 @@ const DisplayOne = ({ props }) => {
         setShowForm(false);
     };
     const handleShowForm = () => setShowForm(true);
-
-
-    const { show, handleClose, subjects } = props;
 
     const currentSubject = subjects.find(s => s.objectId === show.id);
 

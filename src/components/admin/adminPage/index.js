@@ -46,7 +46,7 @@ const Admin = () => {
             <PageLayout />
             {tableName === 'stories' ?
                 <>
-                    {alert ? null : <AlertComponent text={alert} />}
+                    {alert ?  <AlertComponent text={alert} /> : null}
                     <div className={styles.container}>
                         <div className={styles.row}>
                             <div className={styles["col-md-6"]}>

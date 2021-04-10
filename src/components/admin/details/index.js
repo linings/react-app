@@ -45,8 +45,8 @@ const Details = (props) => {
             time: new Date()
         }).then(promise => {
 
-            makeRelationToUser(getCookie('x-auth-token'), 'message', promise.objectId);
-            makeRelationToUser(request.requesterId, 'message', promise.objectId);
+            makeRelationToUser(getCookie('x-auth-token'), 'message', promise.objectId); // current LoggedIn
+            makeRelationToUser(request.requesterId, 'message', promise.objectId);  // companion
 
             setText("");
         }).catch(err => {

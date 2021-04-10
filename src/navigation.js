@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import Home from "./components/homeComponents/home";
 import Login from "./pages/login";
@@ -15,32 +15,31 @@ const Navigation = () => {
       {values =>
         <BrowserRouter>
           <Switch>
-            {/* <Route path="/" exact component={Home} />
-       // <Route path="/login">
-       //   {loggedIn ? <Redirect to="/" /> : <Login />}
-       // </Route>
-       // <Route path="/register">
-       //   {loggedIn ? <Redirect to="/" /> : <Register />}
-       // </Route>*/}
+            {/* <Route path="/" exact component={Home} />*/}
+            <Route path="/login">
+              {localStorage.getItem('username') ? <Redirect to="/" /> : <Login />}
+            </Route>
+            <Route path="/register">
+              {localStorage.getItem('username') ? <Redirect to="/" /> : <Register />}
+            </Route>
             <Route path="/adopt">
               {localStorage.getItem('username') ? <Donate /> : <Redirect to="/login" />}
             </Route>
-          {console.log(values.user)}
-            {/* <Route path="/messages">
-       //   {!loggedIn ? <Redirect to="/login" /> : <Messages />}
-       // </Route>
-       // <Route path="/upload">
-       //   {!loggedIn ? <Redirect to="/" />
-       //     : !isAdmin ? < Redirect to="/" />
-       //       : <Admin />}
-       // </Route> */}
+            <Route path="/messages">
+              {!localStorage.getItem('username') ? <Redirect to="/login" /> : <Messages />}
+            </Route>
+            {/* <Route path="/upload">
+              {!localStorage.getItem('username') ? <Redirect to="/" />
+                : !values.user ? < Redirect to="/" />
+                  : <Admin />}
+            </Route> */}
 
             {<Route path="/" exact component={Home} />}
-            {<Route path="/login" component={Login} />}
-            {<Route path="/register" component={Register} />}
+            {/* {<Route path="/login" component={} />} */}
+            {/* {<Route path="/register" component={} />} */}
             {/* {<Route path="/adopt" component={Donate} />} */}
             {<Route path="/upload" component={Admin} />}
-            {<Route path="/messages" component={Messages} />}
+            {/* {<Route path="/messages" component={} />} */}
           </Switch>
         </BrowserRouter>}
 

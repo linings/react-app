@@ -7,25 +7,23 @@ import post from '../../../utils/postData';
 import AlertComponent from '../../alert';
 
 const AdoptionForm = ({ id }) => {
-    const [name, setName] = useState('');
-    const [permission, setPermission] = useState('');
-    const [currently, setCurrently] = useState('');
-    const [description, setDescription] = useState('');
-
     const [alert, setAlert] = useState('');
 
     const history = useHistory();
     const location = useLocation();
 
-    const onSubmit = () => {
-        if (name === '' || permission === '' || currently === '' || description === '') {
+    const onSubmit = (e) => {
+        e.preventDefault();
+        const { name, permission, currently, description } = e.target;
+
+        if (name.value === '' || permission.value === '' || currently.value === '' || description.value === '') {
             return setAlert(`All Fields must be filled!`);
         }
         post('adoptionRequests', {
-            name,
-            permission,
-            currently,
-            description,
+            name: name.value,
+            permission: permission.value,
+            currently: currently.value,
+            description: description.value,
             email: localStorage.getItem('username'),
             requesterId: getCookie('x-auth-token'),
             petId: id,
@@ -36,21 +34,23 @@ const AdoptionForm = ({ id }) => {
 
     return (
         <>
-            <Form >
+            <Form onSubmit={onSubmit} >
                 {alert ? <AlertComponent text={alert} /> : null}
-                <Form.Group controlId="exampleForm.ControlInput1">
+                <Form.Group controlId="exampleForm.ControlInput1" >
                     <Form.Label>Names</Form.Label>
                     <Form.Control
-                        type="email"
+                        type="text"
+                        name="name"
                         placeholder="First Name and Family Name"
-                        value={name} onChange={(e) => setName(e.target.value)} />
+                    />
                 </Form.Group>
-                <Form.Group controlId="exampleForm.ControlSelect1">
+                <Form.Group controlId="exampleForm.ControlSelect1" >
                     <Form.Label>Do you have permission that you can have a pet where you live?</Form.Label>
                     <Form.Control
                         as="select"
-                        value={permission}
-                        onChange={(e) => setPermission(e.target.value)}>
+                        type="text"
+                        name='permission'
+                    >
                         <option></option>
                         <option>yes</option>
                         <option>no</option>
@@ -58,7 +58,7 @@ const AdoptionForm = ({ id }) => {
                 </Form.Group>
                 <Form.Group controlId="exampleForm.ControlSelect1">
                     <Form.Label>Do you currently have pet?</Form.Label>
-                    <Form.Control as="select" value={currently} onChange={(e) => setCurrently(e.target.value)}>
+                    <Form.Control as="select" name='currently'>
                         <option></option>
                         <option>yes</option>
                         <option>no</option>
@@ -69,14 +69,13 @@ const AdoptionForm = ({ id }) => {
                     <Form.Control
                         as="textarea"
                         rows={10}
-                        value={description}
-                        placeholder={'Description'}
-                        onChange={(e) => setDescription(e.target.value)} />
+                        placeholder='Description'
+                        name='description' />
                 </Form.Group>
-            </Form>
-            <Button onClick={onSubmit} size="lg" variant="outline-info" block >
-                Submit
+                <Button type='submit' size="lg" variant="outline-info" block >
+                    Submit
            </Button>
+            </Form>
         </>
     )
 }

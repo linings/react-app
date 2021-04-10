@@ -2,9 +2,8 @@ import React from 'react';
 import Cards from 'react-credit-cards';
 import 'react-credit-cards/es/styles-compiled.css';
 import styles from './index.module.css';
-import { withRouter } from 'react-router-dom';
 
- class PaymentForm extends React.Component {
+class PaymentForm extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -76,9 +75,6 @@ import { withRouter } from 'react-router-dom';
     }
 
     render() {
-        if (this.props.clicked && this.state.cvc !== '' && this.state.expiry !== '' && this.state.number !== '' && this.state.name !== '') {
-            this.props.history.push('/');
-        }
         return (
             <div id="PaymentForm" className={styles['payment-form']}>
 
@@ -153,4 +149,4 @@ import { withRouter } from 'react-router-dom';
         );
     }
 }
-export default withRouter(PaymentForm);
+export default PaymentForm;

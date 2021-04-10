@@ -3,9 +3,8 @@ import Button from 'react-bootstrap/Button';
 import PaymentForm from '../card';
 import AdoptionForm from '../../adoptionComponents/adoptionForm';
 import Details from '../../admin/details';
-import { useEffect, useState } from 'react';
+
 const Display = ({ props }) => {
-    const history = useHistory();
     return (
         <Modal
             animation={false}
@@ -24,7 +23,7 @@ const Display = ({ props }) => {
             </Modal.Body>
             <Modal.Footer>
                 {props.subject === 'card' ?
-                    <Button onClick={() => history.push('/')} variant="outline-info" >
+                    <Button href={'/'} variant="outline-info" >
                         Donate
                     </Button>
                     : null}

@@ -6,8 +6,8 @@ import UserContext from "../../context";
 import authenticate from "../../utils/authenticate";
 import RESTAPI from "../../REST API";
 import handleErrors from "../../utils/errors";
-import { createBrowserHistory } from 'history';
 import AlertComponent from "../../components/alert";
+import { useHistory } from "react-router";
 
 
 const Register = () => {
@@ -15,11 +15,10 @@ const Register = () => {
   const [alert, setAlert] = useState('');
 
   const context = useContext(UserContext);
-  let history = createBrowserHistory({ forceRefresh: true })
+  const history = useHistory();
 
   const checkForError = (e) => {
     handleErrors(e, setErrors);
-    console.log(errors);
   }
 
   const handleSubmit = async (e) => {

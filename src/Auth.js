@@ -38,7 +38,7 @@ const Auth = (props) => {
             logOut();
             return;
         }
-
+      
         authenticate(
             RESTAPI.name + 'users/login',
             {

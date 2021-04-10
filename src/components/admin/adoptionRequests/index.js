@@ -1,5 +1,5 @@
 import Button from 'react-bootstrap/Button';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Table from 'react-bootstrap/Table';
 import { useLocation } from 'react-router';
 import styles from './index.module.css';
@@ -23,12 +23,11 @@ const AdoptionRequestsList = () => {
     const handleShowCard = (e) => {
         setShowCard({ id: e.target.parentNode.parentNode.id, show: true });
     }
-
+    
     const deleteCard = (e) => {
         let id = e.target.parentNode.parentNode.id;
-        deleteItem(id, 'adoptionRequests').then(() => {
-            history.push('/upload');
-        });
+        deleteItem(id, 'adoptionRequests');
+        history.push('/adopt');
     }
 
     return (
