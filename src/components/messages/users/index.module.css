@@ -1,0 +1,31 @@
+.users-wrapper{
+    display: flex;    
+    margin: inherit;
+}
+.single-user{
+    padding: 10px 10px 10px 10px;
+    background-color: rgb(147, 209, 211);
+    border-radius: 100px; 
+    height: 85px;
+    width: 85px;
+    margin-left: 15px;
+    box-shadow: 0.5em 0 .5em rgb(142, 188, 190);
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    border-color: whitesmoke;
+}
+.single-user:hover{
+    display: inline-block;
+    color:rgb(255, 255, 255);
+    box-shadow: 0 0 100px rgb(10 5 5 / 0%);
+    background: #b8c7cf;
+    border-radius: 100px;
+    box-shadow: 1em 0 .4em cadetblue;
+    outline:none;
+    border-color: rgb(199, 199, 199);
+}
+.single-user:focus{
+    outline-color: #f3f3f3;
+    outline: 0;
+    background-color: rgb(147, 209, 211);
+}

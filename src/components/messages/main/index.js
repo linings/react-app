@@ -4,33 +4,39 @@ import { useEffect, useState } from 'react';
 import getCookie from '../../../utils/cookie';
 import post from '../../../utils/postData';
 import makeRelationToUser from '../../../utils/makeRelationToUser';
-import getData from '../../../utils/getData';
+import Users from '../users';
+import getAllUsersData from "../../../utils/getAllUsersData";
 
 const Messages = () => {
     const [messages, setMessages] = useState([]);
     const [text, setText] = useState('');
-    const [messageId, setMessageId] = useState('');
     const [companionId, setCompanionId] = useState('');
+    const [clicked, setClicked] = useState({ clicked: false, user: null });
+    const [users, setUsers] = useState([]);
 
-    const getMessages = async () => {
-        let promise = await getData('message');
-        let sortedMessages = promise.sort((a, b) => a.time - b.time);
+    const getUsers = () => {
+        getAllUsersData()
+            .then(result => {
+                let currentUser = getCookie('x-auth-token');
 
-        setMessages(sortedMessages);
+                const users = result.filter(user => user.objectId !== currentUser);
+                setUsers(users);
+            });
+    };
 
-        if (Object.keys(messages).length !== 0) {
-            const companion = messages.find(m => m.userName !== localStorage.getItem('names'));
+    const getCompanionIdAndMessages = () => {
+        if (clicked.clicked) {
+            setCompanionId(clicked.user.objectId);
 
-            if (companion) {
-                setCompanionId(companion.userId);
-            }
+            const sortedMEssages = clicked.user.message.sort((a, b) => a.time - b.time);
+            setMessages(sortedMEssages);
         }
     }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if(text === ''){
+        if (text === '') {
             return;
         }
 
@@ -43,12 +49,9 @@ const Messages = () => {
             time: new Date()
         }).then(promise => {
             makeRelationToUser(getCookie('x-auth-token'), 'message', promise.objectId);
+            console.log(companionId);
+            makeRelationToUser(companionId, 'message', promise.objectId);
 
-            if (companionId) {
-                makeRelationToUser(companionId, 'message', promise.objectId);
-            }
-
-            setMessageId(promise.objectId);
             setText("");
         }).catch(err => {
             console.log(err);
@@ -56,25 +59,29 @@ const Messages = () => {
 
     }
     useEffect(() => {
-        getMessages();
-    }, [messageId])
+        getUsers();
+        getCompanionIdAndMessages();
+    }, [users,messages,companionId]);
 
     return (
         <div className={styles.wrapper}>
-            <span>
-                <h5 className={styles.name}>Admin</h5>
+            <Users props={{ users, clicked, setClicked }} />
+            { clicked.clicked ? <span>
+                <h5 className={styles.name}>{clicked.user.name}</h5>
+                {console.log(clicked.user)}
                 <span className={styles.messages}>
                     <div className={styles.date}>{Object.keys(messages).length !== 0
                         ? new Date(messages[messages.length - 1].time).toDateString()
                         : null}</div>
 
-                    {Object.keys(messages).length !== 0 ? messages.map((message, i) => {
+                    {Object.keys(messages).length !== 0 ? messages.map((m, i) => {
                         return (
                             <div key={i}>
-                                <div className={message.userId === getCookie('x-auth-token') ? styles['message-time-right'] : styles['message-time-left']}>{new Date(message.time).toLocaleTimeString()}</div>
+                                <div className={m.userId === getCookie('x-auth-token') ? styles['message-time-right'] : styles['message-time-left']}>{new Date(m.time).toLocaleTimeString()}</div>
                                 <div className={styles['single-message']}>
-                                    <span className={message.userId === getCookie('x-auth-token') ? styles['message-name-right'] : styles['message-name-left']}>
-                                        {message.message}  </span>
+                                    <span className={m.userId === getCookie('x-auth-token') ? styles['message-name-right'] : styles['message-name-left']}>
+                                        {console.log(m)}
+                                        {m.message}  </span>
                                 </div>
                             </div>
                         )
@@ -93,7 +100,7 @@ const Messages = () => {
                         <Button type="Submit" className={styles['message-btn']} variant="primary">Send</Button>
                     </form>
                 </span>
-            </span>
+            </span> : null}
         </div>
     )
 }

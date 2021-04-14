@@ -28,11 +28,6 @@ const Navigation = () => {
             <Route path="/messages">
               {!localStorage.getItem('username') ? <Redirect to="/login" /> : <Messages />}
             </Route>
-            {/* <Route path="/upload">
-              {!localStorage.getItem('username') ? <Redirect to="/" />
-                : !values.user ? < Redirect to="/" />
-                  : <Admin />}
-            </Route> */}
 
             {<Route path="/" exact component={Home} />}
             {/* {<Route path="/login" component={} />} */}
