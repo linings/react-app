@@ -6,11 +6,13 @@ import post from '../../../utils/postData';
 import makeRelationToUser from '../../../utils/makeRelationToUser';
 import Users from '../users';
 import getAllUsersData from "../../../utils/getAllUsersData";
+import getMessagesData from '../../../utils/getMessages';
+import getData from '../../../utils/getData';
 
 const Messages = () => {
     const [messages, setMessages] = useState([]);
     const [text, setText] = useState('');
-    const [companionId, setCompanionId] = useState('');
+    const [companion, setCompanion] = useState({});
     const [clicked, setClicked] = useState({ clicked: false, user: null });
     const [users, setUsers] = useState([]);
 
@@ -18,19 +20,29 @@ const Messages = () => {
         getAllUsersData()
             .then(result => {
                 let currentUser = getCookie('x-auth-token');
-
                 const users = result.filter(user => user.objectId !== currentUser);
                 setUsers(users);
             });
     };
 
-    const getCompanionIdAndMessages = () => {
+    const getCompanion = () => {
         if (clicked.clicked) {
-            setCompanionId(clicked.user.objectId);
-
-            const sortedMEssages = clicked.user.message.sort((a, b) => a.time - b.time);
-            setMessages(sortedMEssages);
+            setCompanion(clicked.user);
+            getMessages();
         }
+    }
+
+    const getMessages = () => {
+        getMessagesData('message', 0, 20).then(result => {
+            console.log(companion.objectId);
+            const filteredMessages = result.filter(m => {
+                return (m.userFromId === getCookie('x-auth-token') && m.userToId === companion.objectId)
+                    || (m.userToId === getCookie('x-auth-token') && m.userFromId === companion.objectId)
+            });
+            console.log(getCookie('x-auth-token'));
+            const sortedMessages = filteredMessages.sort((a, b) => a.time - b.time);
+            setMessages(sortedMessages);
+        });
     }
 
     const handleSubmit = async (e) => {
@@ -43,44 +55,53 @@ const Messages = () => {
         let currentUserNames = localStorage.getItem('names');
 
         post('message', {
-            'userNAme': currentUserNames,
+            'userName': currentUserNames,
             'message': text,
-            'userId': getCookie('x-auth-token'),
+            'userFromId': getCookie('x-auth-token'),
+            'userToId': companion.objectId,
             time: new Date()
         }).then(promise => {
             makeRelationToUser(getCookie('x-auth-token'), 'message', promise.objectId);
-            console.log(companionId);
-            makeRelationToUser(companionId, 'message', promise.objectId);
+            makeRelationToUser(companion.objectId, 'message', promise.objectId);
 
             setText("");
+
+            getUsers();
+            getCompanion();
         }).catch(err => {
             console.log(err);
         });
 
     }
+
+    // const updateMessages = () => {
+    //     getAllUsersData().then(result => {
+    //         const currentMessages = result.filter(m => m.objectId === (companion.objectId || getCookie('x-auth-token')))
+    //         console.log(currentMessages);
+    //     });
+    // }
+
     useEffect(() => {
         getUsers();
-        getCompanionIdAndMessages();
-    }, [users,messages,companionId]);
+        getCompanion();
+    }, [clicked, companion]);
 
     return (
         <div className={styles.wrapper}>
             <Users props={{ users, clicked, setClicked }} />
-            { clicked.clicked ? <span>
+            {clicked.clicked ? <span>
+                {console.log(messages)}
                 <h5 className={styles.name}>{clicked.user.name}</h5>
-                {console.log(clicked.user)}
                 <span className={styles.messages}>
                     <div className={styles.date}>{Object.keys(messages).length !== 0
                         ? new Date(messages[messages.length - 1].time).toDateString()
                         : null}</div>
-
                     {Object.keys(messages).length !== 0 ? messages.map((m, i) => {
                         return (
                             <div key={i}>
-                                <div className={m.userId === getCookie('x-auth-token') ? styles['message-time-right'] : styles['message-time-left']}>{new Date(m.time).toLocaleTimeString()}</div>
+                                <div className={m.userFromId === getCookie('x-auth-token') ? styles['message-time-right'] : styles['message-time-left']}>{new Date(m.time).toLocaleTimeString()}</div>
                                 <div className={styles['single-message']}>
-                                    <span className={m.userId === getCookie('x-auth-token') ? styles['message-name-right'] : styles['message-name-left']}>
-                                        {console.log(m)}
+                                    <span className={m.userFromId === getCookie('x-auth-token') ? styles['message-name-right'] : styles['message-name-left']}>
                                         {m.message}  </span>
                                 </div>
                             </div>
