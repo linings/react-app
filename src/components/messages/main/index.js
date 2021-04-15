@@ -34,12 +34,9 @@ const Messages = () => {
 
     const getMessages = () => {
         getMessagesData('message', 0, 20).then(result => {
-            console.log(companion.objectId);
             const filteredMessages = result.filter(m => {
-                return (m.userFromId === getCookie('x-auth-token') && m.userToId === companion.objectId)
-                    || (m.userToId === getCookie('x-auth-token') && m.userFromId === companion.objectId)
+                return (m.userFromId === getCookie('x-auth-token') && m.userToId === companion.objectId) || (m.userToId === getCookie('x-auth-token') && m.userFromId === companion.objectId)
             });
-            console.log(getCookie('x-auth-token'));
             const sortedMessages = filteredMessages.sort((a, b) => a.time - b.time);
             setMessages(sortedMessages);
         });
@@ -90,7 +87,6 @@ const Messages = () => {
         <div className={styles.wrapper}>
             <Users props={{ users, clicked, setClicked }} />
             {clicked.clicked ? <span>
-                {console.log(messages)}
                 <h5 className={styles.name}>{clicked.user.name}</h5>
                 <span className={styles.messages}>
                     <div className={styles.date}>{Object.keys(messages).length !== 0
