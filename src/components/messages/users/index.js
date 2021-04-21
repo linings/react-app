@@ -10,7 +10,7 @@ const Users = ({ props }) => {
         props.setClicked(prevState => newState);
     }
     return (
-        <div className={styles['users-wrapper']}>
+        <div className={styles['people']}>
             {props.users ? props.users.map(user => {
                 return <Button
                     onClick={setButtonToClicked}

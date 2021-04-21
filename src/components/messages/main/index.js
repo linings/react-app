@@ -7,7 +7,6 @@ import makeRelationToUser from '../../../utils/makeRelationToUser';
 import Users from '../users';
 import getAllUsersData from "../../../utils/getAllUsersData";
 import getMessagesData from '../../../utils/getMessages';
-import getData from '../../../utils/getData';
 
 const Messages = () => {
     const [messages, setMessages] = useState([]);
@@ -71,13 +70,6 @@ const Messages = () => {
 
     }
 
-    // const updateMessages = () => {
-    //     getAllUsersData().then(result => {
-    //         const currentMessages = result.filter(m => m.objectId === (companion.objectId || getCookie('x-auth-token')))
-    //         console.log(currentMessages);
-    //     });
-    // }
-
     useEffect(() => {
         getUsers();
         getCompanion();
@@ -86,16 +78,20 @@ const Messages = () => {
     return (
         <div className={styles.wrapper}>
             <Users props={{ users, clicked, setClicked }} />
-            {clicked.clicked ? <span>
+            {clicked.clicked ? <span className={styles.chatbox}>
+                <span className={styles.person}>
+                <span className={styles['top-bar']}>
                 <h5 className={styles.name}>{clicked.user.name}</h5>
+                </span>
+                </span>
                 <span className={styles.messages}>
-                    <div className={styles.date}>{Object.keys(messages).length !== 0
+                    <div className={styles.time}>{Object.keys(messages).length !== 0
                         ? new Date(messages[messages.length - 1].time).toDateString()
                         : null}</div>
                     {Object.keys(messages).length !== 0 ? messages.map((m, i) => {
                         return (
-                            <div key={i}>
-                                <div className={m.userFromId === getCookie('x-auth-token') ? styles['message-time-right'] : styles['message-time-left']}>{new Date(m.time).toLocaleTimeString()}</div>
+                            <div key={i} className={styles.outgoing}>
+                                <div className={m.userFromId === getCookie('x-auth-token') ? styles['bubble'] : styles['message-time-left']}>{new Date(m.time).toLocaleTimeString()}</div>
                                 <div className={styles['single-message']}>
                                     <span className={m.userFromId === getCookie('x-auth-token') ? styles['message-name-right'] : styles['message-name-left']}>
                                         {m.message}  </span>
@@ -105,7 +101,7 @@ const Messages = () => {
                     }) : <div className={styles['no-messages']}>You don`t have any massages yet! :(</div>}
 
                 </span>
-                <span>
+                <span className={styles['bottom-bar']}>
                     <form onSubmit={(e) => handleSubmit(e)}>
                         <input
                             type="text"
