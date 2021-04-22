@@ -91,9 +91,9 @@ const Messages = () => {
                     {Object.keys(messages).length !== 0 ? messages.map((m, i) => {
                         return (
                             <div key={i} className={styles.outgoing}>
-                                <div className={m.userFromId === getCookie('x-auth-token') ? styles['bubble'] : styles['message-time-left']}>{new Date(m.time).toLocaleTimeString()}</div>
+                                <div className={m.userFromId === getCookie('x-auth-token') ? styles['message-time-right'] : styles['message-left']}>{new Date(m.time).toLocaleTimeString()}</div>
                                 <div className={styles['single-message']}>
-                                    <span className={m.userFromId === getCookie('x-auth-token') ? styles['message-name-right'] : styles['message-name-left']}>
+                                    <span className={m.userFromId === getCookie('x-auth-token') ? styles['message-text-right'] : styles['message-left']}>
                                         {m.message}  </span>
                                 </div>
                             </div>
